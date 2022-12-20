@@ -9,11 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import net.denis.productioncontrol.presentation.state.CarListState
+import net.denis.productioncontrol.presentation.state.CarState
 
 @Composable
 fun LabelCheckbox(
-    state: CarListState,
+    state: CarState,
     onCheck:() -> Unit
 ) {
     Row(modifier = Modifier.padding(8.dp)) {

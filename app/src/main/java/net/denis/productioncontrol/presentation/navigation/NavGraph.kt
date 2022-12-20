@@ -26,7 +26,7 @@ fun NavGraph(
 
         }
         composable(
-            route = Screen.ProductionProcess.route
+            route = Screen.ProductionProcessList.route
         ) {
             ProductionProcessScreen()
         }

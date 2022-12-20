@@ -10,7 +10,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import net.denis.productioncontrol.domain.repository.ICarRepository
-import net.denis.productioncontrol.presentation.state.CarListState
+import net.denis.productioncontrol.presentation.state.CarState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,8 +20,8 @@ class CarListViewModel @Inject constructor(
 
     val userIntent = Channel<MainIntent>(Channel.UNLIMITED)
 
-    private val _stateCarList = mutableStateOf(CarListState())
-    val stateCarList: State<CarListState> = _stateCarList
+    private val _stateCarList = mutableStateOf(CarState())
+    val stateCarList: State<CarState> = _stateCarList
 
     private fun handleIntent() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -35,7 +35,7 @@ class CarListViewModel @Inject constructor(
 
     private fun fetchCar() {
         viewModelScope.launch(Dispatchers.IO) {
-            _stateCarList.value = CarListState(isLoading = true)
+            _stateCarList.value = CarState(isLoading = true)
 
 
         }

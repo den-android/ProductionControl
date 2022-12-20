@@ -18,8 +18,8 @@ fun CarListScreen(
         LazyColumn {
             items(state.cars) { car ->
                 CarCardItem(
-                    car = car,
-
+                    car = car
+                )
             }
         }
     }
