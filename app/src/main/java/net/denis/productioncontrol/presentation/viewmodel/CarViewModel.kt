@@ -14,7 +14,7 @@ import net.denis.productioncontrol.presentation.state.CarState
 import javax.inject.Inject
 
 @HiltViewModel
-class CarListViewModel @Inject constructor(
+class CarViewModel @Inject constructor(
     private val carRepository: ICarRepository
 ) : ViewModel() {
 
