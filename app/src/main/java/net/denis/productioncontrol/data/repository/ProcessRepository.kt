@@ -1,23 +1,22 @@
 package net.denis.productioncontrol.data.repository
 
-import net.denis.productioncontrol.domain.model.Car
 import net.denis.productioncontrol.domain.model.Checklist
-import net.denis.productioncontrol.domain.model.ProductionProcess
-import net.denis.productioncontrol.domain.repository.IProductionProcessRepository
+import net.denis.productioncontrol.domain.model.Process
+import net.denis.productioncontrol.domain.repository.IProcessRepository
 import net.denis.productioncontrol.domain.util.Result
 import javax.inject.Inject
 
-class ProductionProcessRepository @Inject constructor(
+class ProcessRepository @Inject constructor(
 
-) : IProductionProcessRepository {
-    override suspend fun getProductionProcess(): Result<List<ProductionProcess>> {
+) : IProcessRepository {
+    override suspend fun getProcess(): Result<List<java.lang.Process>> {
         TODO("Not yet implemented")
     }
 
     private val remoteDataSource = (1..5).map {
-        ProductionProcess(
+        Process(
             id = it,
-            name = "Production process name $it",
+            name = "Process name $it",
             checklist = listOf(
                 Checklist(
                     id = it,

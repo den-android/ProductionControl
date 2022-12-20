@@ -63,7 +63,3 @@ class CarViewModel @Inject constructor(
         }
     }
  */
-
-sealed class MainIntent {
-    object FetchCar : MainIntent()
-}

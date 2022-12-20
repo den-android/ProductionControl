@@ -4,9 +4,9 @@ sealed class Screen(val route: String) {
 
     object CarList : Screen("CarList")
 
-    object ProductionProcessList : Screen("ProductionProcess?id={id}"){
+    object ProcessList : Screen("Process?id={id}"){
         fun passCarId(id: Int): String {
-            return "ProductionProcess?id=$id"
+            return "Process?id=$id"
         }
     }
 

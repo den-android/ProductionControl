@@ -6,19 +6,19 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(
-    tableName = "production_process_table"
+    tableName = "process_table"
 )
 
-data class ProductionProcessEntity(
+data class ProcessEntity(
     /**
      *  Расширить модель
      */
 
     @PrimaryKey(autoGenerate = true)
-    val processId: Int,
+    val id: Int,
 
     @ColumnInfo(collate = ColumnInfo.NOCASE, name = "process_name")
-    val processName: String,
+    val name: String,
 
    /*
     val checklistItem: Checklist

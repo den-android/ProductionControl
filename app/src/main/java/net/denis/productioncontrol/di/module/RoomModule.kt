@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.data.local.room.AppDatabase
 import net.denis.productioncontrol.data.local.room.dao.CarDao
 import net.denis.productioncontrol.data.local.room.dao.ChecklistDao
-import net.denis.productioncontrol.data.local.room.dao.ProductionProcessDao
+import net.denis.productioncontrol.data.local.room.dao.ProcessDao
 import javax.inject.Singleton
 
 @Module
@@ -35,8 +35,8 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideProductionProcessDao(appDatabase: AppDatabase): ProductionProcessDao {
-        return appDatabase.productionProcessDao()
+    fun provideProcessDao(appDatabase: AppDatabase): ProcessDao {
+        return appDatabase.processDao()
     }
 
     @Provides

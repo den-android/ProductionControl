@@ -8,12 +8,13 @@ import net.denis.productioncontrol.presentation.screen.CarListScreen
 import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 import net.denis.productioncontrol.presentation.screen.ProductionProcessScreen
 import net.denis.productioncontrol.presentation.viewmodel.CarListViewModel
+import net.denis.productioncontrol.presentation.viewmodel.CarViewModel
 
 
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    vm: CarListViewModel
+    vm: CarViewModel
 ) {
     NavHost(
         navController = navController,
@@ -26,9 +27,9 @@ fun NavGraph(
 
         }
         composable(
-            route = Screen.ProductionProcessList.route
+            route = Screen.ProcessList.route
         ) {
-            ProductionProcessScreen()
+            ProcessScreen()
         }
         composable(
             route = Screen.Checklist.route

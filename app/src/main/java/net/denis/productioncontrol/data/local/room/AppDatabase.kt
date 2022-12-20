@@ -6,16 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import net.denis.productioncontrol.data.local.room.dao.CarDao
 import net.denis.productioncontrol.data.local.room.dao.ChecklistDao
-import net.denis.productioncontrol.data.local.room.dao.ProductionProcessDao
+import net.denis.productioncontrol.data.local.room.dao.ProcessDao
 import net.denis.productioncontrol.data.local.room.entities.CarEntity
 import net.denis.productioncontrol.data.local.room.entities.ChecklistEntity
-import net.denis.productioncontrol.data.local.room.entities.ProductionProcessEntity
-import net.denis.productioncontrol.presentation.navigation.Screen
+import net.denis.productioncontrol.data.local.room.entities.ProcessEntity
 
 @Database(
     entities = [
         CarEntity::class,
-        ProductionProcessEntity::class,
+        ProcessEntity::class,
         ChecklistEntity::class
     ],
     version = 1
@@ -23,7 +22,7 @@ import net.denis.productioncontrol.presentation.navigation.Screen
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun carDao(): CarDao
-    abstract fun productionProcessDao(): ProductionProcessDao
+    abstract fun processDao(): ProcessDao
     abstract fun checklistDao(): ChecklistDao
 
     companion object {
