@@ -16,9 +16,9 @@ data class CarEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
 
     @ColumnInfo(collate = ColumnInfo.NOCASE, name = "name_car")
-    val nameCar: String,
+    val carName: String,
 
     @ColumnInfo(collate = ColumnInfo.NOCASE, name = "model_car")
-    val modelCar: String,
+    val carModel: String,
 
     ): Serializable

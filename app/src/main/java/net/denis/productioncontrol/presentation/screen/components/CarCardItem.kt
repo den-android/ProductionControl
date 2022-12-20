@@ -8,12 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import net.denis.productioncontrol.domain.model.CarItem
-import net.denis.productioncontrol.presentation.state.CarListState
+import net.denis.productioncontrol.domain.model.Car
 
 @Composable
 fun CarCardItem(
-    car: CarItem,
+    car: Car,
 ) {
     val context = LocalContext.current
     Column(
@@ -23,12 +22,12 @@ fun CarCardItem(
     ) {
         Box {
             Text(
-                text = car.nameCar,
+                text = car.name,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.body1
             )
             Text(
-                text = car.modelCar,
+                text = car.model,
                 overflow = TextOverflow.Ellipsis,
             )
         }
@@ -36,7 +35,7 @@ fun CarCardItem(
             horizontalArrangement = Arrangement.Center
         ) {
             Button(onClick = {
-                Toast.makeText(context, "${car.modelCar}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, car.model, Toast.LENGTH_SHORT).show()
             }) {}
             Text("Unchecked")
         }

@@ -4,19 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import net.denis.productioncontrol.data.local.room.dao.CarListDao
+import net.denis.productioncontrol.data.local.room.dao.CarDao
 import net.denis.productioncontrol.data.local.room.dao.ChecklistDao
+import net.denis.productioncontrol.data.local.room.dao.ProductionProcessDao
+import net.denis.productioncontrol.data.local.room.entities.CarEntity
 import net.denis.productioncontrol.data.local.room.entities.ChecklistEntity
+import net.denis.productioncontrol.data.local.room.entities.ProductionProcessEntity
+import net.denis.productioncontrol.presentation.navigation.Screen
 
 @Database(
     entities = [
+        CarEntity::class,
+        ProductionProcessEntity::class,
         ChecklistEntity::class
     ],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun carListDao(): CarListDao
+    abstract fun carDao(): CarDao
+    abstract fun productionProcessDao(): ProductionProcessDao
     abstract fun checklistDao(): ChecklistDao
 
     companion object {
@@ -32,7 +39,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "productionControl_database"
+                    "production_control_database"
                 ).build()
                 INSTANCE = instance
                 return instance

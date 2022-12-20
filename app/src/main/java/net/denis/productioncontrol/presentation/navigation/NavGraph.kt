@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import net.denis.productioncontrol.presentation.screen.CarListScreen
 import net.denis.productioncontrol.presentation.screen.ChecklistScreen
+import net.denis.productioncontrol.presentation.screen.ProductionProcessScreen
 import net.denis.productioncontrol.presentation.viewmodel.CarListViewModel
 
 
@@ -22,6 +23,12 @@ fun NavGraph(
             route = Screen.CarList.route
         ) {
             CarListScreen(vm = vm)
+
+        }
+        composable(
+            route = Screen.ProductionProcess.route
+        ) {
+            ProductionProcessScreen()
         }
         composable(
             route = Screen.Checklist.route

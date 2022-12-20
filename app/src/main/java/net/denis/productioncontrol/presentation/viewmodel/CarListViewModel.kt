@@ -9,13 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
-import net.denis.productioncontrol.domain.repository.ICarListRepository
+import net.denis.productioncontrol.domain.repository.ICarRepository
 import net.denis.productioncontrol.presentation.state.CarListState
 import javax.inject.Inject
 
 @HiltViewModel
 class CarListViewModel @Inject constructor(
-    private val carListRepository: ICarListRepository
+    private val carRepository: ICarRepository
 ) : ViewModel() {
 
     val userIntent = Channel<MainIntent>(Channel.UNLIMITED)

@@ -8,8 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.data.local.room.AppDatabase
-import net.denis.productioncontrol.data.local.room.dao.CarListDao
+import net.denis.productioncontrol.data.local.room.dao.CarDao
 import net.denis.productioncontrol.data.local.room.dao.ChecklistDao
+import net.denis.productioncontrol.data.local.room.dao.ProductionProcessDao
 import javax.inject.Singleton
 
 @Module
@@ -22,14 +23,20 @@ class RoomModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "productionControl_database"
+            "production_control_database"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun provideCarListDao(appDatabase: AppDatabase): CarListDao {
-        return appDatabase.carListDao()
+    fun provideCarDao(appDatabase: AppDatabase): CarDao {
+        return appDatabase.carDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductionProcessDao(appDatabase: AppDatabase): ProductionProcessDao {
+        return appDatabase.productionProcessDao()
     }
 
     @Provides
