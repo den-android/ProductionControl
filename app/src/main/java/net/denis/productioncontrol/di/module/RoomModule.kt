@@ -8,8 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.data.local.room.AppDatabase
-import net.denis.productioncontrol.data.local.room.dao.CarDao
-import net.denis.productioncontrol.data.local.room.dao.ChecklistDao
 import net.denis.productioncontrol.data.local.room.dao.AssemblyStageDao
 import javax.inject.Singleton
 
@@ -29,19 +27,8 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideCarDao(appDatabase: AppDatabase): CarDao {
-        return appDatabase.carDao()
-    }
-
-    @Provides
-    @Singleton
     fun provideAssemblyStageDao(appDatabase: AppDatabase): AssemblyStageDao {
         return appDatabase.assemblyStageDao()
     }
 
-    @Provides
-    @Singleton
-    fun provideChecklistDao(appDatabase: AppDatabase): ChecklistDao {
-        return appDatabase.checklistDao()
-    }
 }

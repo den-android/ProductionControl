@@ -44,5 +44,5 @@ class AssemblyStageViewModel @Inject constructor(
                 }
         }
     }
-    
+
 }
