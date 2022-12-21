@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.denis.productioncontrol.domain.repository.IAssemblyStageRepository
+import net.denis.productioncontrol.util.Result
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,23 +14,35 @@ class AssemblyStageViewModel @Inject constructor(
     private val assemblyStageRepository: IAssemblyStageRepository
 ) : ViewModel() {
 
-    private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
-    val event = _event.asSharedFlow()
+    fun createInitialState(): AssemblyStageContract.State {
+        return AssemblyStageContract.State(
+            assemblyStageState = AssemblyStageContract.AssemblyStageState.Idle,
+        )
+    }
 
-    private val _state : MutableStateFlow<State> = MutableStateFlow(initialState)
-    val state = _state.asStateFlow()
-
-
-    fun handleEvent(event: Event) {
-        viewModelScope.launch {
-            when (event) {
-                is Event.onStageClicked -> assemblyStageRepository.getAssemblyStage()
+    fun handleEvent(event: AssemblyStageContract.Event) {
+        when (event) {
+            is AssemblyStageContract.Event.FetchAssemblyStage -> {
+                fetchAssemblyStage()
+            }
+            is AssemblyStageContract.Event.OnStageClicked -> {
+               TODO()
             }
         }
     }
 
     private fun fetchAssemblyStage() {
+        viewModelScope.launch {
+            assemblyStageRepository.getAssemblyStage()
+                .onStart { emit(Result.Loading) }
+                .collect {
+                    when (it) {
+                        is Result.Loading -> {
 
+                        }
+                    }
+                }
+        }
     }
-
+    
 }

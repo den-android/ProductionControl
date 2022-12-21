@@ -1,15 +1,12 @@
-package net.denis.productioncontrol.presentation.state
+package net.denis.productioncontrol.presentation.viewmodel
 
 import net.denis.productioncontrol.domain.model.AssemblyStage
-import net.denis.productioncontrol.domain.model.Checklist
 
 class AssemblyStageContract {
 
     sealed class Event {
         object FetchAssemblyStage: Event()
-        object FetchChecklist: Event()
         data class OnStageClicked(val stage: AssemblyStage): Event()
-        data class OnChecklistClicked(val checklistClicked: Checklist): Event()
     }
 
     data class State(
