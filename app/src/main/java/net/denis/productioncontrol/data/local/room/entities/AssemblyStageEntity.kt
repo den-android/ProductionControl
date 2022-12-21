@@ -10,9 +10,6 @@ import java.io.Serializable
 )
 
 data class AssemblyStageEntity(
-    /**
-     *  Расширить модель
-     */
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
@@ -20,8 +17,7 @@ data class AssemblyStageEntity(
     @ColumnInfo(collate = ColumnInfo.NOCASE, name = "assembly_stage_name")
     val name: String,
 
-   /*
-    val checklistItem: Checklist
-    */
+    @ColumnInfo(collate = ColumnInfo.NOCASE, name = "checklist_item")
+    val checklistItem: ChecklistEntity
 
-    ) : Serializable
+) : Serializable

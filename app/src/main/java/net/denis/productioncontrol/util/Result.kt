@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.domain.util
+package net.denis.productioncontrol.util
 
 sealed class Result<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Result<T>(data)

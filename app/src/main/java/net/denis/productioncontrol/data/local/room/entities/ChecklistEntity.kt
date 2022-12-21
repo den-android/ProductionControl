@@ -3,6 +3,7 @@ package net.denis.productioncontrol.data.local.room.entities
 import androidx.room.ColumnInfo
 import androidx.room.ColumnInfo.NOCASE
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(
@@ -10,10 +11,10 @@ import java.io.Serializable
 )
 
 data class ChecklistEntity(
-    /**
-     *  Расширить модель
-     */
-    @ColumnInfo(collate = NOCASE, name = "purchase_sale_agreement")
-    val PurchaseSaleAgreement: String,
 
-    ): Serializable
+    @PrimaryKey(autoGenerate = true) val id: Int,
+
+    @ColumnInfo(collate = NOCASE, name = "checklist_name")
+    val name: String
+
+) : Serializable
