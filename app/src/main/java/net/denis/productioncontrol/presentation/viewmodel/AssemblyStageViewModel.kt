@@ -10,7 +10,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.denis.productioncontrol.domain.repository.IAssemblyStageRepository
-import net.denis.productioncontrol.domain.repository.IChecklistRepository
 import net.denis.productioncontrol.presentation.mvi.Event
 import net.denis.productioncontrol.presentation.mvi.AssemblyStageState
 import net.denis.productioncontrol.presentation.state.ChecklistState
@@ -18,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AssemblyStageViewModel @Inject constructor(
-    private val assemblyStageRepository: IAssemblyStageRepository,
-    private val checklistRepository: IChecklistRepository
+    private val assemblyStageRepository: IAssemblyStageRepository
 ) : ViewModel() {
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.ColumnInfo.NOCASE
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import net.denis.productioncontrol.data.model.ChecklistData
 import java.io.Serializable
 
 @Entity(
@@ -17,4 +18,11 @@ data class ChecklistEntity(
     @ColumnInfo(collate = NOCASE, name = "checklist_name")
     val name: String
 
-) : Serializable
+) : Serializable {
+    fun toChecklistData(): ChecklistData {
+        return ChecklistData(
+            id = id,
+            name = name
+        )
+    }
+}
