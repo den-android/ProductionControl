@@ -6,5 +6,5 @@ data class CarState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val cars: List<Car> = emptyList(),
-    var isChecked: Boolean = false
+    val isChecked: Boolean = false
 )
