@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(
-    tableName = "process_table"
+    tableName = "assembly_stage_table"
 )
 
-data class ProcessEntity(
+data class AssemblyStageEntity(
     /**
      *  Расширить модель
      */
@@ -17,7 +17,7 @@ data class ProcessEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
-    @ColumnInfo(collate = ColumnInfo.NOCASE, name = "process_name")
+    @ColumnInfo(collate = ColumnInfo.NOCASE, name = "assembly_stage_name")
     val name: String,
 
    /*

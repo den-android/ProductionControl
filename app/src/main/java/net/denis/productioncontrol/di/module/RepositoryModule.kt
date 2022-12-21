@@ -6,10 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.data.repository.CarRepository
 import net.denis.productioncontrol.data.repository.ChecklistRepository
-import net.denis.productioncontrol.data.repository.ProcessRepository
+import net.denis.productioncontrol.data.repository.AssemblyStageRepository
 import net.denis.productioncontrol.domain.repository.ICarRepository
 import net.denis.productioncontrol.domain.repository.IChecklistRepository
-import net.denis.productioncontrol.domain.repository.IProcessRepository
+import net.denis.productioncontrol.domain.repository.IAssemblyStageRepository
 import javax.inject.Singleton
 
 @Module
@@ -26,6 +26,6 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindProcessRepository(processRepository: ProcessRepository): IProcessRepository
+    abstract fun bindProcessRepository(processRepository: AssemblyStageRepository): IAssemblyStageRepository
 
 }
