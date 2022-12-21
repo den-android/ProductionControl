@@ -1,5 +1,6 @@
 package net.denis.productioncontrol.data.repository
 
+import kotlinx.coroutines.flow.Flow
 import net.denis.productioncontrol.domain.model.Checklist
 import net.denis.productioncontrol.domain.model.AssemblyStage
 import net.denis.productioncontrol.domain.repository.IAssemblyStageRepository
@@ -9,7 +10,8 @@ import javax.inject.Inject
 class AssemblyStageRepository @Inject constructor(
 
 ) : IAssemblyStageRepository {
-    override suspend fun getProcess(): Result<List<java.lang.Process>> {
+    
+    override suspend fun getAssemblyStage(): Flow<Result<List<AssemblyStage>>> {
         TODO("Not yet implemented")
     }
 
