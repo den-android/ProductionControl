@@ -6,18 +6,18 @@ class AssemblyStageContract {
 
     sealed class Event {
         object FetchAssemblyStage: Event()
-        data class OnStageClicked(val stage: AssemblyStage): Event()
+        data class SaveAssemblyStage(val stage: AssemblyStage): Event()
     }
 
     data class State(
-        val assemblyStageState: AssemblyStageState
+        val assemblyStageState: ViewState
     )
 
-    sealed class AssemblyStageState {
-        object Idle : AssemblyStageState()
-        object Loading : AssemblyStageState()
-        class Error(val message: String?) : AssemblyStageState()
-        class Success(val stages: List<AssemblyStage>) : AssemblyStageState()
+    sealed class ViewState {
+        object Idle : ViewState()
+        object Loading : ViewState()
+        class Error(val message: String?) : ViewState()
+        class Success(val stages: List<AssemblyStage>) : ViewState()
     }
 
 }

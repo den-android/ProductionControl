@@ -8,4 +8,6 @@ interface IAssemblyStageRepository {
 
     suspend fun getAssemblyStage(): Flow<Result<List<AssemblyStage>>>
 
+    suspend fun saveAssemblyStage(stage: AssemblyStage)
+
 }

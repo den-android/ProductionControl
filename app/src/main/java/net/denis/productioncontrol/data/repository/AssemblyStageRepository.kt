@@ -29,4 +29,7 @@ class AssemblyStageRepository @Inject constructor(
         }
     }
 
+    override suspend fun saveAssemblyStage(stage: AssemblyStage) {
+        TODO("Not yet implemented")
+    }
 }
