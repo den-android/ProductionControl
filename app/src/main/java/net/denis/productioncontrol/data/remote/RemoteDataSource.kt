@@ -5,9 +5,12 @@ import net.denis.productioncontrol.data.repository.IRemoteDataSource
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
-
+    private val api: AssemblyStageApi
 ): IRemoteDataSource {
+
     override suspend fun getAssemblyStage(): List<AssemblyStageDto> {
-        TODO("Not yet implemented")
+        val networkData = api.getAssemblyStage()
+        return networkData
     }
+
 }

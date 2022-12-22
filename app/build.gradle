@@ -56,6 +56,15 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
 
+    // Network
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+
+    // GSON
+    implementation "com.google.code.gson:gson:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
     // Room
     api "androidx.room:room-runtime:$room"
     kapt "androidx.room:room-compiler:$room"
