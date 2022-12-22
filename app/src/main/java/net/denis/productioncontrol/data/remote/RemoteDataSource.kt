@@ -9,8 +9,7 @@ class RemoteDataSource @Inject constructor(
 ): IRemoteDataSource {
 
     override suspend fun getAssemblyStage(): List<AssemblyStageDto> {
-        val networkData = api.getAssemblyStage()
-        return networkData
+        return api.getAssemblyStage()
     }
 
 }
