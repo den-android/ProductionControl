@@ -1,26 +1,26 @@
 package net.denis.productioncontrol.data.remote.dto
 
-import net.denis.productioncontrol.data.model.AssemblyStageData
-import net.denis.productioncontrol.domain.model.AssemblyStage
+import net.denis.productioncontrol.data.model.StageData
+import net.denis.productioncontrol.domain.model.Stage
 
 data class AssemblyStageDto(
     val id: Int,
     val name: String,
-    val checklistDto: List<ChecklistDto>
+   // val checklistDto: List<ChecklistDto>
 ) {
-    fun toAssemblyStage(): AssemblyStage {
-        return AssemblyStage(
+    fun toAssemblyStage(): Stage {
+        return Stage(
             id = id,
             name = name,
-            checklist = checklistDto.map { it.toChecklist() }
+           // checklist = checklistDto.map { it.toChecklist() }
         )
     }
 
-    fun toAssemblyStageData(): AssemblyStageData {
-        return AssemblyStageData(
+    fun toAssemblyStageData(): StageData {
+        return StageData(
             id = id,
             name = name,
-            checklistData = checklistDto.map { it.toChecklistData() }
+           // checklistData = checklistDto.map { it.toChecklistData() }
         )
     }
 }

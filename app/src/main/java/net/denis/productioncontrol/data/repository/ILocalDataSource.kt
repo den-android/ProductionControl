@@ -1,17 +1,17 @@
 package net.denis.productioncontrol.data.repository
 
-import net.denis.productioncontrol.data.model.AssemblyStageData
+import net.denis.productioncontrol.data.model.StageData
 
 interface ILocalDataSource {
 
-    suspend fun addAssemblyStageItem(stage: AssemblyStageData): Int
-    suspend fun getAssemblyStageItem(id: Int): AssemblyStageData
+    suspend fun addStageItem(stageData: StageData)
+    suspend fun getStageItem(id: Int): StageData
 
-    suspend fun addAssemblyStageItems(stages: List<AssemblyStageData>): List<Int>
-    suspend fun getAssemblyStageItems(): List<AssemblyStageData>
+    suspend fun addStageItems(stagesData: List<StageData>)
+    suspend fun getStageItems(): List<StageData>
 
-    suspend fun updateAssemblyStageItem(stage: AssemblyStageData): Int
+    suspend fun updateStageItem(stageData: StageData)
 
-    suspend fun deleteAssemblyStageItemById(id: Int): Int
+    suspend fun deleteStageItemById(id: Int)
 
 }

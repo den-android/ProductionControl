@@ -1,6 +1,5 @@
 package net.denis.productioncontrol.presentation.screen.components
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -8,10 +7,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import net.denis.productioncontrol.domain.model.Stage
 
 @Composable
 fun CardItem(
-
+ //   checklist: Checklist,
+    stage: Stage,
 ) {
     val context = LocalContext.current
     Column(
@@ -21,22 +22,23 @@ fun CardItem(
     ) {
         Box {
             Text(
-                text = "123",
+                text = "${stage.id}",
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.body1
             )
             Text(
-                text = "123",
+                text = "${stage.name}",
                 overflow = TextOverflow.Ellipsis,
             )
+//            Text(
+//                text = "${checklist.id}",
+//                overflow = TextOverflow.Ellipsis,
+//            )
+//            Text(
+//                text = "${checklist.name}",
+//                overflow = TextOverflow.Ellipsis,
+//            )
         }
-        Row(
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Button(onClick = {
-                Toast.makeText(context, "123", Toast.LENGTH_SHORT).show()
-            }) {}
-            Text("Unchecked")
-        }
+
     }
 }

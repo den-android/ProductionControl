@@ -5,25 +5,21 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import net.denis.productioncontrol.presentation.screen.AssemblyStageScreen
-import net.denis.productioncontrol.presentation.screen.ChecklistScreen
+import net.denis.productioncontrol.presentation.viewmodel.AssemblyStageViewModel
 
 @Composable
 fun NavGraph(
     navController: NavHostController,
+    vm: AssemblyStageViewModel,
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.AssemblyStageList.route
+        startDestination = Screen.AssemblyStage.route
     ) {
         composable(
-            route = Screen.AssemblyStageList.route
+            route = Screen.AssemblyStage.route
         ) {
-            AssemblyStageScreen()
-        }
-        composable(
-            route = Screen.Checklist.route
-        ) {
-            ChecklistScreen()
+            AssemblyStageScreen(viewModel = vm)
         }
     }
 

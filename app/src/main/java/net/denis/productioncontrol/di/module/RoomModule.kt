@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.data.local.room.AppDatabase
-import net.denis.productioncontrol.data.local.room.dao.AssemblyStageDao
+import net.denis.productioncontrol.data.local.room.dao.StageDao
 import javax.inject.Singleton
 
 @Module
@@ -27,7 +27,7 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideAssemblyStageDao(appDatabase: AppDatabase): AssemblyStageDao {
+    fun provideAssemblyStageDao(appDatabase: AppDatabase): StageDao {
         return appDatabase.assemblyStageDao()
     }
 
