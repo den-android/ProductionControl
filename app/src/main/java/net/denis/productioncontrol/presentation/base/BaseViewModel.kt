@@ -41,8 +41,7 @@ abstract class BaseViewModel<
     abstract fun handleEvent(event : Event)
 
     fun setEvent(event : Event) {
-        val newEvent = event
-        viewModelScope.launch { _event.emit(newEvent) }
+        viewModelScope.launch { _event.emit(event) }
     }
 
     protected fun setState(reduce: UiState.() -> UiState) {

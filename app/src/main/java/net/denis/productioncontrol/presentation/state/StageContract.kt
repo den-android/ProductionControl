@@ -10,7 +10,6 @@ class StageContract {
 
     sealed class Event: ViewEvent {
         object OnFetchPosts: Event()
-        object OnSaveStage: Event()
         data class OnFetchChecklist(val idStage: Int): Event()
     }
 

@@ -29,7 +29,7 @@ class StageViewModel @Inject constructor(
                 fetchStage()
             }
             is StageContract.Event.OnFetchChecklist -> {
-
+                fetchChecklist()
             }
         }
     }
@@ -64,6 +64,10 @@ class StageViewModel @Inject constructor(
                     }
                 }
         }
+    }
+
+    private fun fetchChecklist() {
+        Log.d("----", "///LOAD CHECKLIST")
     }
 
     init {

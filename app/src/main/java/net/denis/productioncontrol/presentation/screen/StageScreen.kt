@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.collect
 import net.denis.productioncontrol.domain.model.Stage
 import net.denis.productioncontrol.presentation.screen.components.ProgressIndicator
 import net.denis.productioncontrol.presentation.screen.components.StageCardItem
+import net.denis.productioncontrol.presentation.screen.components.getStageList
 import net.denis.productioncontrol.presentation.state.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
 
@@ -25,59 +26,37 @@ fun StageScreen(
 ) {
     val state = vm.viewState.value
 
-    showData(state = state)
+    getStageList(state = state)
 
+}
 
     // showButton(onEventSent = { vm.handleEvent(it)})
 
-}
+//@Composable
+//fun Include(
+//    vm: StageViewModel,
+//    state: StageContract.State,
+//    onEventSent: (event: StageContract.Event) -> Unit,
+//    //onEventHandler: (StageContract.Event) -> Unit,
+//) {
+//    val state = vm.viewState.value
+//
+//}
 
-@Composable
-fun Include(
-    vm: StageViewModel,
-    state: StageContract.State,
-    onEventSent: (event: StageContract.Event) -> Unit,
-    //onEventHandler: (StageContract.Event) -> Unit,
-) {
-    val state = vm.viewState.value
+//@Composable
+//fun showButton(
+//    onEventSent: (event: StageContract.Event) -> Unit,
+//) {
+//    Button(onClick = {
+//        onEventSent.invoke(StageContract.Event.OnSaveStage)
+//    }) {
+//        Text(
+//            text = "number.toString()",
+//            modifier = Modifier.fillMaxWidth()
+//        )
+//    }
+//}
 
-}
-
-@Composable
-fun showButton(
-    onEventSent: (event: StageContract.Event) -> Unit,
-) {
-    Button(onClick = {
-        onEventSent.invoke(StageContract.Event.OnSaveStage)
-    }) {
-        Text(
-            text = "number.toString()",
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-}
-
-@Composable
-fun showData(
-    state: StageContract.State,
-) {
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val height = minHeight/state.stageList.size
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            state.stageList.forEachIndexed { index, stage ->
-                StageCardItem(
-                    modifier = Modifier.height(height),
-                    stage = stage,
-                    onClick = {
-
-                    }
-                )
-            }
-        }
-    }
 //    LazyColumn(
 //        verticalArrangement = Arrangement.SpaceBetween,
 //        modifier = Modifier
@@ -89,7 +68,6 @@ fun showData(
 //        }
 //
 //    }
-}
 
 
 //    when (state) {

@@ -7,7 +7,7 @@ data class Stage(
     val name: String,
     //val checklist: List<Checklist>
 ) {
-    fun toAssemblyStageData(): StageData {
+    fun toStageData(): StageData {
         return StageData(
             id = id,
             name = name,

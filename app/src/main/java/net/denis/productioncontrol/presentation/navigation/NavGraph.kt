@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 import net.denis.productioncontrol.presentation.screen.StageScreen
 import net.denis.productioncontrol.presentation.state.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
@@ -17,12 +18,17 @@ fun NavGraph(
         navController = navController,
         startDestination = Screen.Stage.route
     ) {
+
         composable(
             route = Screen.Stage.route
         ) {
-            StageScreen(
-                vm = vm
-            )
+            StageScreen(vm = vm)
+        }
+
+        composable(
+            route = Screen.Stage.route
+        ) {
+            ChecklistScreen(vm = vm)
         }
     }
 
