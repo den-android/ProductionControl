@@ -12,25 +12,53 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collect
 import net.denis.productioncontrol.domain.model.Stage
-import net.denis.productioncontrol.presentation.screen.components.ProgressIndicator
+import net.denis.productioncontrol.presentation.navigation.Screen
 import net.denis.productioncontrol.presentation.screen.components.StageCardItem
-import net.denis.productioncontrol.presentation.screen.components.getStageList
 import net.denis.productioncontrol.presentation.state.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
 
 @Composable
 fun StageScreen(
+    navController: NavController,
     vm: StageViewModel,
 ) {
     val state = vm.viewState.value
 
-    getStageList(state = state)
+    getStageList(state = state, navController = navController)
 
 }
+@Composable
+fun getStageList(
+    navController: NavController,
+    state: StageContract.State,
+) {
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val height = minHeight / state.stageList.size
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            state.stageList.forEachIndexed { index, stage ->
+                StageCardItem(
+                    modifier = Modifier.height(height),
+                    stage = stage,
+                    onClick = {
+                        navController.navigate(
+                            route = Screen.Checklist.passStageId(
+                                id = stage.id
+                            )
+                        )
+                    }
+                )
+            }
+        }
+    }
+}
 
-    // showButton(onEventSent = { vm.handleEvent(it)})
+// showButton(onEventSent = { vm.handleEvent(it)})
 
 //@Composable
 //fun Include(

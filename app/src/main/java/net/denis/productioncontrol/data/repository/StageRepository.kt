@@ -14,7 +14,6 @@ class StageRepository @Inject constructor(
 ) : IStageRepository {
 
     override suspend fun getStage(): Flow<Result<List<Stage>>> {
-        delay(1500L)
         return flow {
 //            try {
 //                val data = IRemoteDataSource.getAssemblyStage()

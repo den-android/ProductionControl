@@ -2,12 +2,15 @@ package net.denis.productioncontrol.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 import net.denis.productioncontrol.presentation.screen.StageScreen
 import net.denis.productioncontrol.presentation.state.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
+import net.denis.productioncontrol.util.Constants.PARAM_STAGE_ID
 
 @Composable
 fun NavGraph(
@@ -22,13 +25,21 @@ fun NavGraph(
         composable(
             route = Screen.Stage.route
         ) {
-            StageScreen(vm = vm)
+            StageScreen(navController = navController, vm = vm)
         }
 
         composable(
-            route = Screen.Stage.route
-        ) {
-            ChecklistScreen(vm = vm)
+            route = Screen.Checklist.route,
+            arguments = listOf(
+                navArgument(PARAM_STAGE_ID) {
+                    type = NavType.IntType
+                    defaultValue = 2
+                }
+            )
+        ) { entry ->
+            entry.arguments?.getInt(PARAM_STAGE_ID)?.let {
+                ChecklistScreen(stageId = it, vm = vm)
+            }
         }
     }
 

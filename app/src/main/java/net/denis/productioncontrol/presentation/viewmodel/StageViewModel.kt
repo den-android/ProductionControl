@@ -46,7 +46,6 @@ class StageViewModel @Inject constructor(
                         }
                         is Result.Success -> {
                             val data = result.data ?: emptyList()
-                            Log.d("----", "${data.toString()}")
 //                            _viewState.value = _viewState.value.copy(stageList = data, isLoading = false)
                             setState {
                                 copy(
