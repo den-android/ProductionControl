@@ -12,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import net.denis.productioncontrol.presentation.navigation.NavGraph
 import net.denis.productioncontrol.presentation.ui.theme.ProductionControlTheme
-import net.denis.productioncontrol.presentation.viewmodel.AssemblyStageViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

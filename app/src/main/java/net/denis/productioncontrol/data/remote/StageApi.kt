@@ -1,13 +1,13 @@
 package net.denis.productioncontrol.data.remote
 
-import net.denis.productioncontrol.data.remote.dto.AssemblyStageDto
+import net.denis.productioncontrol.data.remote.dto.StageDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
-interface AssemblyStageApi {
+interface StageApi {
 
     @GET("")
     @Headers("Content-type: application/json")
-    suspend fun getAssemblyStage(): List<AssemblyStageDto>
+    suspend fun getStage(): List<StageDto>
 
 }

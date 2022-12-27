@@ -13,8 +13,8 @@ class StageRepository @Inject constructor(
     private val IRemoteDataSource: IRemoteDataSource,
 ) : IStageRepository {
 
-    override suspend fun getAssemblyStage(): Flow<Result<List<Stage>>> {
-        delay(5000L)
+    override suspend fun getStage(): Flow<Result<List<Stage>>> {
+        delay(1500L)
         return flow {
 //            try {
 //                val data = IRemoteDataSource.getAssemblyStage()
@@ -29,15 +29,15 @@ class StageRepository @Inject constructor(
 //                }
 //            }
             try {
-                val data = IRemoteDataSource.getAssemblyStage()
-                emit(Result.Success(data.map{it.toAssemblyStage()}))
+                val data = IRemoteDataSource.getStage()
+                emit(Result.Success(data.map{it.toStage()}))
             }catch (e: Exception) {
                 emit(Result.Error(message = e.localizedMessage))
             }
         }
     }
 
-    override suspend fun saveAssemblyStage(stage: Stage) {
+    override suspend fun saveStage(stage: Stage) {
         TODO()
         //        try {
 //            val data = stage

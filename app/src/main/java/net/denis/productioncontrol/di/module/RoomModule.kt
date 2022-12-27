@@ -27,8 +27,8 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideAssemblyStageDao(appDatabase: AppDatabase): StageDao {
-        return appDatabase.assemblyStageDao()
+    fun provideStageDao(appDatabase: AppDatabase): StageDao {
+        return appDatabase.stageDao()
     }
 
 }
