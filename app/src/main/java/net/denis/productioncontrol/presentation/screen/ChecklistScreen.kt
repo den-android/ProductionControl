@@ -16,20 +16,11 @@ fun ChecklistScreen(
     vm: StageViewModel,
     stageId: Int,
 ) {
-    val checklist = (0..15).map {
-        Checklist(
-            id = it,
-            name = "ChecklistItem $it",
-        )
-    }
+
+    val checklist = Checklist(0, "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text v")
     val state = vm.viewState.value
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        items(checklist) { checklistItem ->
-            ChecklistCardItem(checklist = checklistItem)
-        }
-    }
+    ChecklistCardItem(checklist = checklist)
+
 
 }

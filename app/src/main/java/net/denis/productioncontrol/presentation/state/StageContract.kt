@@ -21,5 +21,6 @@ class StageContract {
 
     sealed class Effect: ViewSideEffect {
         data class ShowError(val message: String?): Effect()
+        data class ShowAlertDialog(val title: String, val inputText: String): Effect()
     }
 }
