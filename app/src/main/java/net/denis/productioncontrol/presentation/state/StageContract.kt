@@ -11,6 +11,7 @@ class StageContract {
     sealed class Event: ViewEvent {
         object OnFetchPosts: Event()
         data class OnFetchChecklist(val idStage: Int): Event()
+        object Choose
     }
 
     data class State(
@@ -21,6 +22,5 @@ class StageContract {
 
     sealed class Effect: ViewSideEffect {
         data class ShowError(val message: String?): Effect()
-        data class ShowAlertDialog(val title: String, val inputText: String): Effect()
     }
 }
