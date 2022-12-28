@@ -25,11 +25,14 @@ class StageViewModel @Inject constructor(
 
     override fun handleEvent(event: StageContract.Event) {
         when (event) {
-            is StageContract.Event.OnFetchPosts -> {
+            is StageContract.Event.OnFetchStage -> {
                 fetchStage()
             }
             is StageContract.Event.OnFetchChecklist -> {
                 fetchChecklist()
+            }
+            is StageContract.Event.LoadNextChecklistItem -> {
+                loadNextChecklistItem()
             }
         }
     }
@@ -37,7 +40,6 @@ class StageViewModel @Inject constructor(
     private fun fetchStage() {
         viewModelScope.launch {
             stageRepository.getStage()
-                .onStart { emit(Result.Loading()) }
                 .collect { result ->
                     when (result) {
                         is Result.Loading -> {
@@ -46,6 +48,7 @@ class StageViewModel @Inject constructor(
                         }
                         is Result.Success -> {
                             val data = result.data ?: emptyList()
+                            Log.d("----", "${data}")
 //                            _viewState.value = _viewState.value.copy(stageList = data, isLoading = false)
                             setState {
                                 copy(
@@ -69,9 +72,13 @@ class StageViewModel @Inject constructor(
         Log.d("----", "///LOAD CHECKLIST")
     }
 
+    private fun loadNextChecklistItem() {
+
+    }
+
     init {
         viewModelScope.launch {
-            handleEvent(event = StageContract.Event.OnFetchPosts)
+            handleEvent(event = StageContract.Event.OnFetchStage)
         }
     }
 }

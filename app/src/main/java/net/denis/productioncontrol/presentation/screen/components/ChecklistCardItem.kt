@@ -14,15 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.denis.productioncontrol.domain.model.Checklist
+import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 
 @Composable
 fun ChecklistCardItem(
     checklist: Checklist,
     modifier: Modifier = Modifier,
+    loadNextChecklistItem:() -> Unit,
 ) {
 
     Card(
@@ -37,7 +40,7 @@ fun ChecklistCardItem(
             modifier
                 .fillMaxSize(),
         ) {
-            Box(modifier = modifier.weight(1f)) {
+            Box(modifier = modifier.weight(2f)) {
                 Text(
                     text = checklist.name,
                     fontSize = 24.sp,
@@ -46,10 +49,43 @@ fun ChecklistCardItem(
                         .padding(6.dp),
                 )
             }
-            Box(modifier = modifier.weight(2f)) {
-                RadioGroup()
+            Box(
+                modifier = modifier
+                    .weight(1f)
+                    .padding(6.dp)
+            ) {
+                Button(
+                    onClick = {
+                        loadNextChecklistItem
+                    },
+                    modifier = modifier
+                        .fillMaxSize()
+                ) {
+                    Text(
+                        text = "Перейти к следующему",
+                        textAlign = TextAlign.Center,
+                        overflow = TextOverflow.Clip,
+                        fontSize = 32.sp,
+                    )
+                }
             }
+            Box(modifier = modifier.weight(4f)) {
+                RadioGroup(onRadioClick = {
+                    if (it != Color.Green) {
+                        loadNextChecklistItem()
+                    }
+                })
+            }
+
         }
     }
 
+}
+@Preview(showBackground = true)
+@Composable
+fun ShowTest(){
+    ChecklistCardItem(
+        checklist = Checklist(0,"Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text "),
+        modifier = Modifier,
+    loadNextChecklistItem = {})
 }

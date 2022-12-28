@@ -26,10 +26,10 @@ fun StageScreen(
     vm: StageViewModel,
 ) {
     val state = vm.viewState.value
-
     getStageList(state = state, navController = navController)
 
 }
+
 @Composable
 fun getStageList(
     navController: NavController,
@@ -57,7 +57,6 @@ fun getStageList(
         }
     }
 }
-
 // showButton(onEventSent = { vm.handleEvent(it)})
 
 //@Composable

@@ -6,13 +6,13 @@ import net.denis.productioncontrol.domain.model.Stage
 data class StageDto(
     val id: Int,
     val name: String,
-   // val checklistDto: List<ChecklistDto>
+    val checklistDto: List<ChecklistDto>
 ) {
     fun toStage(): Stage {
         return Stage(
             id = id,
             name = name,
-           // checklist = checklistDto.map { it.toChecklist() }
+            checklist = checklistDto.map { it.toChecklist() }
         )
     }
 
@@ -20,7 +20,7 @@ data class StageDto(
         return StageData(
             id = id,
             name = name,
-           // checklistData = checklistDto.map { it.toChecklistData() }
+            checklistData = checklistDto.map { it.toChecklistData() }
         )
     }
 }

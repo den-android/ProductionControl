@@ -16,13 +16,13 @@ class StageRepository @Inject constructor(
     override suspend fun getStage(): Flow<Result<List<Stage>>> {
         return flow {
 //            try {
-//                val data = IRemoteDataSource.getAssemblyStage()
-//                ILocalDataSource.addAssemblyStageItems(data.map { it.toAssemblyStageData() })
-//                emit(Result.Success(data.map { it.toAssemblyStage() }))
+//                val data = IRemoteDataSource.getStage()
+//                ILocalDataSource.addStageItems(data.map { it.toStageData() })
+//                emit(Result.Success(data.map { it.toStage() }))
 //            } catch (e: Exception) {
 //                try {
-//                    val local = ILocalDataSource.getAssemblyStageItems()
-//                    emit(Result.Success(local.map { it.toAssemblyStage() }))
+//                    val local = ILocalDataSource.getStageItems()
+//                    emit(Result.Success(local.map { it.toStage() }))
 //                } catch (e: Exception) {
 //                    emit(Result.Error(message = e.localizedMessage))
 //                }

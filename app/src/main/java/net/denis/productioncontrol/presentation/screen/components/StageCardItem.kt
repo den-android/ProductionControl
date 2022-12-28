@@ -49,14 +49,4 @@ fun StageCardItem(
         }
     }
 }
-//        Text(
-//            text = "${stage.name}",
-//            overflow = TextOverflow.Ellipsis,
-//            maxLines = 1,
-//            textAlign = TextAlign.Center,
-//            modifier = Modifier
-//                .border(width = 1.dp, color = Color.Black)
-//                .background(color = lightPurple)
-//                .fillMaxWidth(),
-//        )
 

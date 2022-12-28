@@ -9,9 +9,9 @@ import net.denis.productioncontrol.presentation.base.ViewState
 class StageContract {
 
     sealed class Event: ViewEvent {
-        object OnFetchPosts: Event()
+        object OnFetchStage: Event()
         data class OnFetchChecklist(val idStage: Int): Event()
-        object Choose
+        object LoadNextChecklistItem: Event()
     }
 
     data class State(

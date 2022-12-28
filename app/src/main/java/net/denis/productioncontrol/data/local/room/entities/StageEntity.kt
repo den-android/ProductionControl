@@ -17,16 +17,16 @@ data class StageEntity(
 
     @ColumnInfo(collate = ColumnInfo.NOCASE, name = "stage_name")
     val name: String,
-//
+
 //    @ColumnInfo(collate = ColumnInfo.NOCASE, name = "checklist_item")
 //    val checklistItem: List<ChecklistEntity>
 
 ) : Serializable {
-    fun toStageData(): StageData {
-        return StageData(
-            id = id,
-            name = name,
-            //checklistData = checklistItem.map { it.toChecklistData() }
-        )
-    }
+//    fun toStageData(): StageData {
+//        return StageData(
+//            id = id,
+//            name = name,
+//            //checklistData = checklistItem.map { it.toChecklistData() }
+//        )
+//    }
 }

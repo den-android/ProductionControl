@@ -24,7 +24,9 @@ import androidx.compose.ui.unit.dp
 import org.intellij.lang.annotations.JdkConstants
 
 @Composable
-fun RadioGroup() {
+fun RadioGroup(
+    onRadioClick:(Color) -> Unit
+) {
     val radioOptions = listOf(Color.Green, Color.Yellow, Color.Red)
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
     Column {
@@ -41,12 +43,12 @@ fun RadioGroup() {
                     .padding(horizontal = 16.dp),
 
             ) {
-
                     RadioButton(
                         selected = (color == selectedOption),
                         modifier = Modifier.padding(all = Dp(value = 8F)),
                         onClick = {
                             onOptionSelected(color)
+                            onRadioClick(color)
                         }
                     )
                 }
@@ -55,11 +57,6 @@ fun RadioGroup() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RadioGroup()
-}
 //
 //@Composable
 //fun SelectOptionsCheckout(
