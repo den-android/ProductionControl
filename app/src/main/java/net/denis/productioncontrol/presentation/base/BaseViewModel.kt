@@ -41,7 +41,9 @@ abstract class BaseViewModel<
     abstract fun handleEvent(event : Event)
 
     fun setEvent(event : Event) {
-        viewModelScope.launch { _event.emit(event) }
+        viewModelScope.launch {
+            _event.emit(event)
+        }
     }
 
     protected fun setState(reduce: UiState.() -> UiState) {
@@ -51,6 +53,8 @@ abstract class BaseViewModel<
 
     protected fun setEffect(builder: () -> Effect) {
         val effectValue = builder()
-        viewModelScope.launch { _effect.send(effectValue) }
+        viewModelScope.launch {
+            _effect.send(effectValue)
+        }
     }
 }
