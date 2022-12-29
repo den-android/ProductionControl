@@ -33,12 +33,13 @@ fun NavGraph(
             arguments = listOf(
                 navArgument(PARAM_STAGE_ID) {
                     type = NavType.IntType
-                    defaultValue = 2
+                    defaultValue = 0
                 }
             )
-        ) { entry ->
-            entry.arguments?.getInt(PARAM_STAGE_ID)?.let {
-                ChecklistScreen(stageId = it, vm = vm)
+        ) { navBackStackEntry ->
+            val id = navBackStackEntry.arguments?.getInt(PARAM_STAGE_ID)
+            if (id != null) {
+                ChecklistScreen(stageId = id, vm = vm)
             }
         }
     }

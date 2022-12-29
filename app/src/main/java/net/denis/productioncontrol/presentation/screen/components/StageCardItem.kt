@@ -34,7 +34,6 @@ fun StageCardItem(
                 bottom = 6.dp,
                 top = 6.dp
             )
-
             .clickable(onClick = onClick),
         elevation = 8.dp
     ) {

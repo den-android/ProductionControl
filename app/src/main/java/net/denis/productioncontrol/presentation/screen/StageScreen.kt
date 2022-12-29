@@ -1,6 +1,7 @@
 package net.denis.productioncontrol.presentation.screen
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,8 +30,7 @@ fun StageScreen(
     navController: NavController,
     vm: StageViewModel,
 ) {
-    val state = vm.viewState.value
-    getStageList(state = state, navController = navController)
+    getStageList(state = vm.viewState.value, navController = navController)
 }
 
 @Composable

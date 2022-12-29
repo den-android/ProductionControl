@@ -7,7 +7,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 
 @Composable
-private fun AlertDialog(
+fun CustomAlertDialog(
     onDialogDismissClick: () -> Unit,
     onDialogOkClick: (String) -> Unit,
 ) {

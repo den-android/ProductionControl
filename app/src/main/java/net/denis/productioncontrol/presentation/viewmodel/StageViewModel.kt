@@ -22,23 +22,29 @@ class StageViewModel @Inject constructor(
     override fun setInitialState() =
         StageContract.State(stageList = emptyList(), isLoading = true)
 
-
     override fun handleEvent(event: StageContract.Event) {
         when (event) {
             is StageContract.Event.OnFetchStage -> {
                 fetchStage()
             }
-            is StageContract.Event.OnFetchChecklist -> {
-                fetchChecklist()
-            }
             is StageContract.Event.LoadNextChecklistItem -> {
-                loadNextChecklistItem()
+                loadNextItem(
+                    color = event.status,
+                    stageId = event.stageIdEvent,
+                )
             }
+        }
+    }
+
+    private fun loadNextItem(color: String, stageId: Int) {
+        viewModelScope.launch {
+            Log.d("----", "ViewModel $color $stageId")
         }
     }
 
     private fun fetchStage() {
         viewModelScope.launch {
+            Log.d("----", "fetch stage...")
             stageRepository.getStage()
                 .collect { result ->
                     when (result) {
@@ -69,14 +75,6 @@ class StageViewModel @Inject constructor(
                     }
                 }
         }
-    }
-
-    private fun fetchChecklist() {
-        Log.d("----", "///LOAD CHECKLIST")
-    }
-
-    private fun loadNextChecklistItem() {
-
     }
 
     init {

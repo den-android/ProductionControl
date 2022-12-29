@@ -4,8 +4,10 @@ sealed class Screen(val route: String) {
 
     object Stage : Screen("Stage")
 
-    object Checklist : Screen("Checklist?id={id}") {
-        fun passStageId(id: Int): String = "Checklist?=id=$id"
+    object Checklist : Screen(route = "Checklist?id={id}") {
+        fun passStageId(id: Int = 0): String {
+            return "Checklist?id=$id"
+        }
     }
 
 }

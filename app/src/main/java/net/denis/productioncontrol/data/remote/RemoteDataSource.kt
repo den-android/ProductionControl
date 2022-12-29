@@ -12,7 +12,7 @@ class RemoteDataSource @Inject constructor(
 
     override suspend fun getStage(): List<StageDto> {
         // Response<>
-        delay(1500L)
+        delay(1000L)
         val data = remoteDataSource
         return data
     }
@@ -24,7 +24,7 @@ class RemoteDataSource @Inject constructor(
             checklistDto = (1..3).map { check->
                 ChecklistDto(
                     id = check,
-                    name = "$stage ChecklistItem $check"
+                    name = "Stage:$stage ChecklistItem:$check"
                 )
             }
 

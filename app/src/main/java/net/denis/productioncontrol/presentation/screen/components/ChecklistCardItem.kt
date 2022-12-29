@@ -23,69 +23,34 @@ import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 
 @Composable
 fun ChecklistCardItem(
-    checklist: Checklist,
+    checklistItemName: String,
     modifier: Modifier = Modifier,
-    loadNextChecklistItem:() -> Unit,
+    onRadioClick:(Color) -> Unit,
 ) {
-
     Card(
         shape = MaterialTheme.shapes.small,
         modifier = modifier
             .padding(4.dp)
             .fillMaxSize(),
         elevation = 4.dp,
-
-    ) {
-        Column(
-            modifier
-                .fillMaxSize(),
         ) {
+        Column {
             Box(modifier = modifier.weight(2f)) {
                 Text(
-                    text = checklist.name,
+                    text = checklistItemName,
                     fontSize = 24.sp,
                     textAlign = TextAlign.Start,
                     modifier = modifier
                         .padding(6.dp),
                 )
             }
-            Box(
-                modifier = modifier
-                    .weight(1f)
-                    .padding(6.dp)
-            ) {
-                Button(
-                    onClick = {
-                        loadNextChecklistItem
-                    },
-                    modifier = modifier
-                        .fillMaxSize()
-                ) {
-                    Text(
-                        text = "Перейти к следующему",
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Clip,
-                        fontSize = 32.sp,
-                    )
-                }
-            }
             Box(modifier = modifier.weight(4f)) {
                 RadioGroup(onRadioClick = {
-                    if (it != Color.Green) {
-                        loadNextChecklistItem()
-                    }
+                    onRadioClick(it)
                 })
             }
 
         }
     }
 
-}
-@Preview(showBackground = true)
-@Composable
-fun ShowTest(){
-    ChecklistCardItem(
-        checklist = Checklist(0,"Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text "),
-        modifier = Modifier,
-    loadNextChecklistItem = {})
 }

@@ -25,32 +25,30 @@ import org.intellij.lang.annotations.JdkConstants
 
 @Composable
 fun RadioGroup(
-    onRadioClick:(Color) -> Unit
+    onRadioClick: (Color) -> Unit
 ) {
     val radioOptions = listOf(Color.Green, Color.Yellow, Color.Red)
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
     Column {
         radioOptions.forEach { color ->
-            Box(modifier = Modifier.weight(1f).fillMaxSize()) {
-            Row(
-                Modifier
-                    .fillMaxSize()
-                    .background(color = color)
-                    .selectable(
-                        selected = (color == selectedOption),
-                        onClick = { onOptionSelected(color) }
-                    )
-                    .padding(horizontal = 16.dp),
+            Box(modifier = Modifier
+                .weight(1f)
+                .fillMaxSize()) {
+                Row(
+                    Modifier
+                        .fillMaxSize()
+                        .background(color = color)
+                        .selectable(
+                            selected = (color == selectedOption),
+                            onClick = {
+                                onOptionSelected(color)
+                                onRadioClick(color)
+                            }
+                        )
+                        .padding(horizontal = 16.dp),
 
-            ) {
-                    RadioButton(
-                        selected = (color == selectedOption),
-                        modifier = Modifier.padding(all = Dp(value = 8F)),
-                        onClick = {
-                            onOptionSelected(color)
-                            onRadioClick(color)
-                        }
-                    )
+                    ) {
+
                 }
             }
         }

@@ -10,8 +10,10 @@ class StageContract {
 
     sealed class Event: ViewEvent {
         object OnFetchStage: Event()
-        data class OnFetchChecklist(val idStage: Int): Event()
-        object LoadNextChecklistItem: Event()
+        data class LoadNextChecklistItem(
+            val status: String,
+            val stageIdEvent: Int,
+        ): Event()
     }
 
     data class State(
