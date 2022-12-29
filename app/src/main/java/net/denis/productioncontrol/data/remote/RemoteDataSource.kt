@@ -1,5 +1,6 @@
 package net.denis.productioncontrol.data.remote
 
+import kotlinx.coroutines.delay
 import net.denis.productioncontrol.data.remote.dto.ChecklistDto
 import net.denis.productioncontrol.data.remote.dto.StageDto
 import net.denis.productioncontrol.data.repository.IRemoteDataSource
@@ -11,6 +12,7 @@ class RemoteDataSource @Inject constructor(
 
     override suspend fun getStage(): List<StageDto> {
         // Response<>
+        delay(1500L)
         val data = remoteDataSource
         return data
     }

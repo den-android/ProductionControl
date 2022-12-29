@@ -8,6 +8,4 @@ interface IStageRepository {
 
     suspend fun getStage(): Flow<Result<List<Stage>>>
 
-    suspend fun saveStage(stage: Stage)
-
 }

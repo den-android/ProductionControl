@@ -1,6 +1,5 @@
 package net.denis.productioncontrol.data.remote.dto
 
-import net.denis.productioncontrol.data.model.StageData
 import net.denis.productioncontrol.domain.model.Stage
 
 data class StageDto(
@@ -13,14 +12,6 @@ data class StageDto(
             id = id,
             name = name,
             checklist = checklistDto.map { it.toChecklist() }
-        )
-    }
-
-    fun toStageData(): StageData {
-        return StageData(
-            id = id,
-            name = name,
-            checklistData = checklistDto.map { it.toChecklistData() }
         )
     }
 }

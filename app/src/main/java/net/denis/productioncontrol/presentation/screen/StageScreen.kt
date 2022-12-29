@@ -27,7 +27,16 @@ fun StageScreen(
 ) {
     val state = vm.viewState.value
     getStageList(state = state, navController = navController)
-
+    if (state.isLoading) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(6.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            CircularProgressIndicator()
+        }
+    }
 }
 
 @Composable

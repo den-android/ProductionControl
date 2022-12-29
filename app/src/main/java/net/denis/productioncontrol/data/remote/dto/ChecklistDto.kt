@@ -1,6 +1,5 @@
 package net.denis.productioncontrol.data.remote.dto
 
-import net.denis.productioncontrol.data.model.ChecklistData
 import net.denis.productioncontrol.domain.model.Checklist
 
 data class ChecklistDto(
@@ -14,10 +13,4 @@ data class ChecklistDto(
         )
     }
 
-    fun toChecklistData(): ChecklistData {
-        return ChecklistData(
-            id = id,
-            name = name
-        )
-    }
 }

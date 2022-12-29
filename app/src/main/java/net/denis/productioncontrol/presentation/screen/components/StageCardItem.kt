@@ -12,8 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import net.denis.productioncontrol.domain.model.Checklist
 import net.denis.productioncontrol.domain.model.Stage
 import net.denis.productioncontrol.presentation.ui.theme.lightPurple
 import org.intellij.lang.annotations.JdkConstants
@@ -48,5 +50,14 @@ fun StageCardItem(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun show() {
+    StageCardItem(
+        stage = Stage(0, "12",checklist = listOf<Checklist>()),
+        onClick = {}
+    )
 }
 
