@@ -17,7 +17,7 @@ class RemoteDataSource @Inject constructor(
         return data
     }
 
-    private val remoteDataSource = (1..4).map { stage ->
+    private val remoteDataSource = (0..9).map { stage ->
         StageDto(
             id = stage,
             name = "Name Stage $stage",

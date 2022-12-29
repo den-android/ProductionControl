@@ -43,23 +43,26 @@ class StageViewModel @Inject constructor(
                 .collect { result ->
                     when (result) {
                         is Result.Loading -> {
-                            setState { copy(isLoading) }
-                            //_viewState.value = _viewState.value.copy(isLoading = true)
+                            setState {
+                                copy(
+                                    isLoading = isLoading,
+                                )
+                            }
                         }
                         is Result.Success -> {
                             val data = result.data ?: emptyList()
-                            Log.d("----", "${data}")
-//                            _viewState.value = _viewState.value.copy(stageList = data, isLoading = false)
                             setState {
                                 copy(
-                                    stageList = data
+                                    stageList = data,
+                                    isLoading = false,
                                 )
                             }
                         }
                         is Result.Error -> {
                             setState {
                                 copy(
-                                    error = result.message
+                                    error = result.message,
+                                    isLoading = false,
                                 )
                             }
                         }

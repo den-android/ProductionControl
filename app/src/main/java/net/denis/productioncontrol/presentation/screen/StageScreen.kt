@@ -1,5 +1,6 @@
 package net.denis.productioncontrol.presentation.screen
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,8 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.collect
 import net.denis.productioncontrol.domain.model.Stage
 import net.denis.productioncontrol.presentation.navigation.Screen
@@ -27,32 +31,20 @@ fun StageScreen(
 ) {
     val state = vm.viewState.value
     getStageList(state = state, navController = navController)
-    if (state.isLoading) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(6.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            CircularProgressIndicator()
-        }
-    }
 }
 
 @Composable
 fun getStageList(
     navController: NavController,
     state: StageContract.State,
+    modifier: Modifier = Modifier,
 ) {
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val height = minHeight / state.stageList.size
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            state.stageList.forEachIndexed { index, stage ->
+    LazyColumn{
+        items(state.stageList){ stage ->
                 StageCardItem(
-                    modifier = Modifier.height(height),
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .fillParentMaxHeight(0.25f),
                     stage = stage,
                     onClick = {
                         navController.navigate(
@@ -63,8 +55,21 @@ fun getStageList(
                     }
                 )
             }
+
+        item{
+            if (state.isLoading) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(6.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
         }
     }
+
 }
 // showButton(onEventSent = { vm.handleEvent(it)})
 

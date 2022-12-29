@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.denis.productioncontrol.domain.model.Checklist
 import net.denis.productioncontrol.domain.model.Stage
+import net.denis.productioncontrol.presentation.navigation.Screen
 import net.denis.productioncontrol.presentation.ui.theme.lightPurple
 import org.intellij.lang.annotations.JdkConstants
 
@@ -33,13 +34,11 @@ fun StageCardItem(
                 bottom = 6.dp,
                 top = 6.dp
             )
-            .fillMaxWidth()
+
             .clickable(onClick = onClick),
         elevation = 8.dp
     ) {
         Column(
-            modifier
-                .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -51,13 +50,3 @@ fun StageCardItem(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun show() {
-    StageCardItem(
-        stage = Stage(0, "12",checklist = listOf<Checklist>()),
-        onClick = {}
-    )
-}
-
