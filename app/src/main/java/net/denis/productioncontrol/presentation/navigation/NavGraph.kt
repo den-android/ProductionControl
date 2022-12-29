@@ -8,7 +8,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 import net.denis.productioncontrol.presentation.screen.StageScreen
-import net.denis.productioncontrol.presentation.state.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
 import net.denis.productioncontrol.util.Constants.PARAM_STAGE_ID
 

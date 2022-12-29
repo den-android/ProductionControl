@@ -1,28 +1,16 @@
 package net.denis.productioncontrol.presentation.screen
 
-import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.flow.collect
-import net.denis.productioncontrol.domain.model.Stage
 import net.denis.productioncontrol.presentation.navigation.Screen
 import net.denis.productioncontrol.presentation.screen.components.StageCardItem
-import net.denis.productioncontrol.presentation.state.StageContract
+import net.denis.productioncontrol.presentation.viewmodel.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
 
 @Composable
@@ -39,6 +27,7 @@ fun getStageList(
     state: StageContract.State,
     modifier: Modifier = Modifier,
 ) {
+    val state = state.stageState
     LazyColumn{
         items(state.stageList){ stage ->
                 StageCardItem(

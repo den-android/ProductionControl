@@ -1,6 +1,5 @@
-package net.denis.productioncontrol.presentation.state
+package net.denis.productioncontrol.presentation.viewmodel
 
-import net.denis.productioncontrol.domain.model.Checklist
 import net.denis.productioncontrol.domain.model.Stage
 import net.denis.productioncontrol.presentation.base.ViewSideEffect
 import net.denis.productioncontrol.presentation.base.ViewEvent
@@ -8,12 +7,11 @@ import net.denis.productioncontrol.presentation.base.ViewState
 
 class StageContract {
 
-    sealed class Event: ViewEvent {
-        object OnFetchStage: Event()
+    sealed class Event : ViewEvent {
+        object OnFetchStage : Event()
         data class LoadNextChecklistItem(
-            val status: String,
-            val stageIdEvent: Int,
-        ): Event()
+            val currentChecklistId: Int,
+        ) : Event()
     }
 
     data class State(
@@ -22,7 +20,7 @@ class StageContract {
         val stageList: List<Stage> = emptyList()
     ): ViewState
 
-    sealed class Effect: ViewSideEffect {
-        data class ShowError(val message: String?): Effect()
+    sealed class Effect : ViewSideEffect {
+        data class ShowError(val message: String?) : Effect()
     }
 }

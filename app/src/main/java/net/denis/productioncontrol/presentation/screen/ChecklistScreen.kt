@@ -2,23 +2,14 @@ package net.denis.productioncontrol.presentation.screen
 
 import android.util.Log
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import net.denis.productioncontrol.data.remote.dto.StageDto
-import net.denis.productioncontrol.domain.model.Checklist
-import net.denis.productioncontrol.presentation.navigation.Screen
 import net.denis.productioncontrol.presentation.screen.components.ChecklistCardItem
-import net.denis.productioncontrol.presentation.screen.components.CustomAlertDialog
-import net.denis.productioncontrol.presentation.screen.components.StageCardItem
-import net.denis.productioncontrol.presentation.state.StageContract
+import net.denis.productioncontrol.presentation.viewmodel.StageContract
 import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
 
 @Composable
@@ -28,47 +19,78 @@ fun ChecklistScreen(
 ) {
     val state = vm.viewState.value
 
-    getChecklist(
-        state = state,
-        loadNextItem = {
+//    testGet(
+//        state = state,
+//        stageId = stageId,
+//        onClick = {
+//            vm.handleEvent(
+//                event = StageContract.Event.LoadNextChecklistItem(
+//                    status = "1",
+//                    stageIdEvent = stageId,
+//                    currentChecklistId = it
+//                )
+//            )
+//        }
+//    )
+    getChecklist(stageId = stageId,
+        onClick = {
             vm.handleEvent(
                 event = StageContract.Event.LoadNextChecklistItem(
-                    status = it,
-                    stageIdEvent = stageId,
+                    currentChecklistId = it
                 )
             )
-        },
-        stageId = stageId
-    )
+        })
+
 }
 
 @Composable
 fun getChecklist(
-    state: StageContract.State,
     modifier: Modifier = Modifier,
-    loadNextItem: (String) -> Unit,
+    onClick: (Int) -> Unit,
     stageId: Int,
 ) {
-    val state = state.stageList
     Column {
         ChecklistCardItem(
-            onRadioClick = {
-                when (it) {
-                    Color.Green -> {
-                        loadNextItem("Green")
+            onRadioClick = { radioItem ->
+                when (radioItem) {
+                    0 -> {
+                        onClick(radioItem)
+                        Log.d("----", "radioItem = 0")
                     }
-                    Color.Yellow -> {
-                        loadNextItem("Yellow")
+                    1 -> {
+                        onClick(radioItem)
+                        Log.d("----", "radioItem = 1")
                     }
-                    Color.Red -> {
-                        loadNextItem("Red")
+                    2 -> {
+                        onClick(radioItem)
+                        Log.d("----", "radioItem = $radioItem")
                     }
                 }
             },
-            checklistItemName = stageId.toString()
+            text = stageId.toString(),
         )
+    }
+}
 
-
+@Composable
+fun testGet(
+    state: StageContract.State,
+    stageId: Int,
+    onClick: (Int) -> Unit,
+) {
+    LazyColumn {
+        items(state.stageState.stageList) { stage ->
+            stage.checklist.forEach() { checklist ->
+                if (stage.id == stageId && checklist.id == 0) {
+                    Text(
+                        text = checklist.name,
+                        modifier = Modifier.clickable {
+                            onClick(checklist.id)
+                        }
+                    )
+                }
+            }
+        }
     }
 }
 

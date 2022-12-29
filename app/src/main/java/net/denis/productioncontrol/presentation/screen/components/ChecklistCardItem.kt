@@ -23,9 +23,9 @@ import net.denis.productioncontrol.presentation.screen.ChecklistScreen
 
 @Composable
 fun ChecklistCardItem(
-    checklistItemName: String,
+    text: String,
     modifier: Modifier = Modifier,
-    onRadioClick:(Color) -> Unit,
+    onRadioClick: (Int) -> Unit,
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
@@ -33,11 +33,11 @@ fun ChecklistCardItem(
             .padding(4.dp)
             .fillMaxSize(),
         elevation = 4.dp,
-        ) {
+    ) {
         Column {
             Box(modifier = modifier.weight(2f)) {
                 Text(
-                    text = checklistItemName,
+                    text = text,
                     fontSize = 24.sp,
                     textAlign = TextAlign.Start,
                     modifier = modifier
@@ -46,7 +46,11 @@ fun ChecklistCardItem(
             }
             Box(modifier = modifier.weight(4f)) {
                 RadioGroup(onRadioClick = {
-                    onRadioClick(it)
+                    when (it) {
+                        Color.Green -> 0
+                        Color.Yellow -> 1
+                        Color.Red -> 2
+                    }
                 })
             }
 

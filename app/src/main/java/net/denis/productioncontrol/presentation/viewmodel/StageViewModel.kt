@@ -1,16 +1,12 @@
 package net.denis.productioncontrol.presentation.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.denis.productioncontrol.domain.repository.IStageRepository
 import net.denis.productioncontrol.presentation.base.BaseViewModel
-import net.denis.productioncontrol.presentation.base.ViewState
-import net.denis.productioncontrol.presentation.state.*
 import net.denis.productioncontrol.util.Result
 import javax.inject.Inject
 
@@ -29,22 +25,38 @@ class StageViewModel @Inject constructor(
             }
             is StageContract.Event.LoadNextChecklistItem -> {
                 loadNextItem(
-                    color = event.status,
-                    stageId = event.stageIdEvent,
+                    currentChecklistId = event.currentChecklistId
                 )
             }
         }
     }
+//
+//    private fun getStatus(status: String, stageId: Int, currentChecklistId: Int) {
+//        Log.d("----", "ViewModel// load next checklist item...")
+//        when (status) {
+//            "Green" -> {
+//
+//            }
+//            "Yellow" -> {
+//
+//            }
+//            "Red" -> {
+//
+//            }
+//        }
+//    }
 
-    private fun loadNextItem(color: String, stageId: Int) {
-        viewModelScope.launch {
-            Log.d("----", "ViewModel $color $stageId")
+    private fun loadNextItem(currentChecklistId: Int) {
+        setState {
+            copy(
+                stageList = stageList
+            )
         }
     }
 
     private fun fetchStage() {
         viewModelScope.launch {
-            Log.d("----", "fetch stage...")
+            Log.d("----", "ViewModel// fetch stage...")
             stageRepository.getStage()
                 .collect { result ->
                     when (result) {
