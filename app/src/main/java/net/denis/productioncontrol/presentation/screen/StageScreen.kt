@@ -27,25 +27,24 @@ fun getStageList(
     state: StageContract.State,
     modifier: Modifier = Modifier,
 ) {
-    val state = state.stageState
-    LazyColumn{
-        items(state.stageList){ stage ->
-                StageCardItem(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .fillParentMaxHeight(0.25f),
-                    stage = stage,
-                    onClick = {
-                        navController.navigate(
-                            route = Screen.Checklist.passStageId(
-                                id = stage.id
-                            )
+    LazyColumn {
+        items(state.stageList) { stage ->
+            StageCardItem(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .fillParentMaxHeight(0.25f),
+                stage = stage,
+                onClick = {
+                    navController.navigate(
+                        route = Screen.Checklist.passStageId(
+                            id = stage.id
                         )
-                    }
-                )
-            }
+                    )
+                }
+            )
+        }
 
-        item{
+        item {
             if (state.isLoading) {
                 Row(
                     modifier = Modifier

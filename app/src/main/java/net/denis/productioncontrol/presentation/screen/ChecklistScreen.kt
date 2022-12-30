@@ -79,7 +79,7 @@ fun testGet(
     onClick: (Int) -> Unit,
 ) {
     LazyColumn {
-        items(state.stageState.stageList) { stage ->
+        items(state.stageList) { stage ->
             stage.checklist.forEach() { checklist ->
                 if (stage.id == stageId && checklist.id == 0) {
                     Text(
