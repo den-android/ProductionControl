@@ -1,6 +1,6 @@
 package net.denis.productioncontrol.presentation.screen.stage_screen.state
 
-import net.denis.productioncontrol.domain.model.Stage
+import net.denis.productioncontrol.presentation.model.Stage
 
 data class StageState(
     val isLoading: Boolean = false,

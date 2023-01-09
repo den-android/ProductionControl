@@ -3,8 +3,7 @@ package net.denis.productioncontrol.data.remote
 import kotlinx.coroutines.delay
 import net.denis.productioncontrol.data.remote.dto.ChecklistDto
 import net.denis.productioncontrol.data.remote.dto.StageDto
-import net.denis.productioncontrol.data.repository.IRemoteDataSource
-import net.denis.productioncontrol.domain.model.Checklist
+import net.denis.productioncontrol.data.interfaces.IRemoteDataSource
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
@@ -34,7 +33,7 @@ class RemoteDataSource @Inject constructor(
 
     private val testRemoteDataSource: List<StageDto> = listOf(
         StageDto(0, "Zero stage", checklistDto = listOf(
-            ChecklistDto(0,"Нулевой чеклист")
+            ChecklistDto(0,"Нулевой6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666 чеклист")
         )),
 
         StageDto(1, "First stage", checklistDto = listOf(

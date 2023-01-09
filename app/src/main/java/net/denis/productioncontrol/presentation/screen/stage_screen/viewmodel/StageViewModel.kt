@@ -1,14 +1,11 @@
 package net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import net.denis.productioncontrol.domain.repository.IStageRepository
+import net.denis.productioncontrol.data.interfaces.IStageRepository
 import net.denis.productioncontrol.presentation.base.BaseViewModel
-import net.denis.productioncontrol.presentation.screen.stage_screen.state.ChecklistState
 import net.denis.productioncontrol.presentation.screen.stage_screen.state.StageState
-import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
 import net.denis.productioncontrol.util.Result
 import javax.inject.Inject
 
@@ -22,10 +19,6 @@ class StageViewModel @Inject constructor(
             stageState = StageState(
                 isLoading = true,
                 stageList = emptyList(),
-            ),
-            checklistState = ChecklistState(
-                isLoading = true,
-                checklist = emptyList(),
             ),
         )
 

@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen.components
+package net.denis.productioncontrol.presentation.screen.stage_screen.components
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*

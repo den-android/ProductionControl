@@ -1,6 +1,6 @@
 package net.denis.productioncontrol.data.remote.dto
 
-import net.denis.productioncontrol.domain.model.Checklist
+import net.denis.productioncontrol.presentation.model.Checklist
 
 data class ChecklistDto(
     val id: Int,

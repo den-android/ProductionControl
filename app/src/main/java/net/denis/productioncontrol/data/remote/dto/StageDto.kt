@@ -1,6 +1,6 @@
 package net.denis.productioncontrol.data.remote.dto
 
-import net.denis.productioncontrol.domain.model.Stage
+import net.denis.productioncontrol.presentation.model.Stage
 
 data class StageDto(
     val id: Int,

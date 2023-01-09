@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.data.repository
+package net.denis.productioncontrol.data.interfaces
 
 import net.denis.productioncontrol.data.remote.dto.StageDto
 

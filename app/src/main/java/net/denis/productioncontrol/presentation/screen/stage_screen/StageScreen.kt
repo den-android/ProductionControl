@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen
+package net.denis.productioncontrol.presentation.screen.stage_screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import net.denis.productioncontrol.presentation.navigation.Screen
-import net.denis.productioncontrol.presentation.screen.components.StageCardItem
+import net.denis.productioncontrol.presentation.screen.stage_screen.components.StageCardItem
 import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
 import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageViewModel
 
@@ -23,10 +23,10 @@ fun StageScreen(
 }
 
 @Composable
-fun getStageList(
+private fun getStageList(
+    modifier: Modifier = Modifier,
     navController: NavController,
     state: StageContract.State,
-    modifier: Modifier = Modifier,
 ) {
     LazyColumn {
         items(state.stageState.stageList) { stage ->

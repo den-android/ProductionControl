@@ -1,41 +1,30 @@
-package net.denis.productioncontrol.presentation.screen.components
+package net.denis.productioncontrol.presentation.screen.stage_screen.components
 
-import android.widget.RadioGroup
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.intellij.lang.annotations.JdkConstants
 
 @Composable
-fun RadioGroup(
+fun CustomRadioGroup(
+    modifier: Modifier = Modifier,
     onRadioClick: (Color) -> Unit
 ) {
     val radioOptions = listOf(Color.Green, Color.Yellow, Color.Red)
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
     Column {
         radioOptions.forEach { color ->
-            Box(modifier = Modifier
-                .weight(1f)
-                .fillMaxSize()) {
+            Box(modifier = modifier
+                .fillMaxSize()
+                .weight(1f)) {
                 Row(
-                    Modifier
+                    modifier = modifier
                         .fillMaxSize()
                         .background(color = color)
                         .selectable(
@@ -53,6 +42,11 @@ fun RadioGroup(
             }
         }
     }
+}
+@Preview(showBackground = true)
+@Composable
+fun testradio(){
+    CustomRadioGroup(onRadioClick = {})
 }
 
 //
