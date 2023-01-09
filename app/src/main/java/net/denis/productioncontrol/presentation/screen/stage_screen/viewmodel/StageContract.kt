@@ -1,7 +1,6 @@
-package net.denis.productioncontrol.presentation.viewmodel
+package net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel
 
 import net.denis.productioncontrol.domain.model.Stage
-import net.denis.productioncontrol.presentation.base.ViewSideEffect
 import net.denis.productioncontrol.presentation.base.ViewEvent
 import net.denis.productioncontrol.presentation.base.ViewState
 
@@ -18,7 +17,4 @@ class StageContract {
         val stageList: List<Stage> = emptyList()
     ): ViewState
 
-    sealed class Effect : ViewSideEffect {
-        data class ShowError(val message: String?) : Effect()
-    }
 }

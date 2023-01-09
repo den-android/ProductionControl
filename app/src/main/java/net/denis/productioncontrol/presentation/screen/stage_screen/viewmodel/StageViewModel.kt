@@ -1,19 +1,19 @@
-package net.denis.productioncontrol.presentation.viewmodel
+package net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import net.denis.productioncontrol.domain.repository.IStageRepository
 import net.denis.productioncontrol.presentation.base.BaseViewModel
+import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
 import net.denis.productioncontrol.util.Result
 import javax.inject.Inject
 
 @HiltViewModel
 class StageViewModel @Inject constructor(
     private val stageRepository: IStageRepository
-) : BaseViewModel<StageContract.Event, StageContract.State, StageContract.Effect>() {
+) : BaseViewModel<StageContract.Event, StageContract.State>() {
 
     override fun setInitialState() =
         StageContract.State(stageList = emptyList(), isLoading = true)

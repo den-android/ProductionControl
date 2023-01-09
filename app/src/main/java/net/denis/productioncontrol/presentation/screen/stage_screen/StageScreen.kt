@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import net.denis.productioncontrol.presentation.navigation.Screen
 import net.denis.productioncontrol.presentation.screen.components.StageCardItem
-import net.denis.productioncontrol.presentation.viewmodel.StageContract
-import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
+import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
+import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageViewModel
 
 @Composable
 fun StageScreen(

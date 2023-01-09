@@ -9,8 +9,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import net.denis.productioncontrol.presentation.screen.components.ChecklistCardItem
-import net.denis.productioncontrol.presentation.viewmodel.StageContract
-import net.denis.productioncontrol.presentation.viewmodel.StageViewModel
+import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
+import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageViewModel
 
 @Composable
 fun ChecklistScreen(
