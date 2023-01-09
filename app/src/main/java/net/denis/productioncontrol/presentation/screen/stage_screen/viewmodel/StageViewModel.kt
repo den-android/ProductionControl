@@ -1,5 +1,6 @@
 package net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -31,8 +32,25 @@ class StageViewModel @Inject constructor(
 
             }
             is StageContract.Event.LoadNextItem -> {
-
+                loadNextChecklist(
+                    currentId = event.currentChecklistId,
+                    maxId = event.maxId,
+                )
             }
+        }
+    }
+
+    init {
+        viewModelScope.launch {
+            handleEvent(event = StageContract.Event.FetchStage)
+        }
+    }
+
+    private fun loadNextChecklist(currentId: Int, maxId: Int): Int {
+        if (currentId < maxId) {
+            return currentId + 1
+        } else {
+            return currentId
         }
     }
 
@@ -76,11 +94,6 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    init {
-        viewModelScope.launch {
-            handleEvent(event = StageContract.Event.FetchStage)
-        }
-    }
 }
 
 //

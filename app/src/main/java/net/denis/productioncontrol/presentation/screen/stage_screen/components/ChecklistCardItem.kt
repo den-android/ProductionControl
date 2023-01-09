@@ -11,13 +11,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.PermissionChecker
 
 @Composable
 fun ChecklistCardItem(
     modifier: Modifier = Modifier,
-    text: String
+    text: String,
+    statusClick: (Int) -> Unit,
 ) {
     val checklistNameScroll = rememberScrollState(0)
     Card(
@@ -40,13 +43,14 @@ fun ChecklistCardItem(
                 )
             }
             Box(modifier = modifier.weight(2f)) {
-                CustomRadioGroup(onRadioClick = {
-                    when (it) {
-                        Color.Green -> 0
-                        Color.Yellow -> 1
-                        Color.Red -> 2
-                    }
-                })
+                CustomRadioGroup(
+                    onRadioClicked = {
+                        when (it) {
+                            Color.Green -> statusClick(0)
+                            Color.Yellow -> statusClick(1)
+                            Color.Red -> statusClick(2)
+                        }
+                    })
             }
 
         }

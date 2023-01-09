@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CustomRadioGroup(
     modifier: Modifier = Modifier,
-    onRadioClick: (Color) -> Unit
+    onRadioClicked: (Color) -> Unit
 ) {
     val radioOptions = listOf(Color.Green, Color.Yellow, Color.Red)
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
@@ -31,7 +31,7 @@ fun CustomRadioGroup(
                             selected = (color == selectedOption),
                             onClick = {
                                 onOptionSelected(color)
-                                onRadioClick(color)
+                                onRadioClicked(color)
                             }
                         )
                         .padding(horizontal = 16.dp),
@@ -46,7 +46,7 @@ fun CustomRadioGroup(
 @Preview(showBackground = true)
 @Composable
 fun testradio(){
-    CustomRadioGroup(onRadioClick = {})
+    CustomRadioGroup(onRadioClicked = {})
 }
 
 //

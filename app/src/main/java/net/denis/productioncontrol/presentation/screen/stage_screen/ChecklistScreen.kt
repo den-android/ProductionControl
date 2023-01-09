@@ -1,5 +1,6 @@
 package net.denis.productioncontrol.presentation.screen.stage_screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.denis.productioncontrol.presentation.screen.stage_screen.components.ChecklistCardItem
 import net.denis.productioncontrol.presentation.screen.stage_screen.components.CustomRadioGroup
+import net.denis.productioncontrol.presentation.screen.stage_screen.state.StageState
 import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
 import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageViewModel
 
@@ -33,34 +35,98 @@ fun ChecklistScreen(
     vm: StageViewModel,
     stageId: Int,
 ) {
-    getChecklist(
-        stageId = stageId,
-        state = vm.viewState.value,
-    )
+//    getChecklist(
+//        stageId = stageId,
+//        checklistId = 0,
+//        state = vm.viewState.value,
+//        loadChecklist = {
+//            vm.handleEvent(StageContract.Event.LoadNextItem(it))
+//        }
+//    )
 
+    val state = vm.viewState.value
+
+    load(
+        stageId = stageId,
+        state = state,
+        click = {
+            state.stageState.stageList.first().checklist.first().id
+        },
+        currentId = {
+
+        },
+        test = { first, second ->
+            vm.handleEvent(StageContract.Event.LoadNextItem(
+                currentChecklistId = first,
+                maxId = second
+            ))
+        }
+    )
 }
 
 @Composable
-private fun getChecklist(
+fun load(
     modifier: Modifier = Modifier,
     state: StageContract.State,
     stageId: Int,
+    click: () -> Int,
+    currentId: (Int) -> Unit,
+    test: (Int, Int) -> Unit,
 ) {
-    LazyColumn {
-        items(state.stageState.stageList) { stage ->
-            stage.checklist.forEach() { checklist ->
-                if (stage.id == stageId) {
-                    ChecklistCardItem(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .fillParentMaxHeight(1f),
-                        text = checklist.name,
-                    )
-                }
+    state.stageState.stageList.forEach { stage ->
+        stage.checklist.forEach { checklist ->
+            if (stageId == stage.id && checklist.id == click()) {
+                ChecklistCardItem(
+                    text = checklist.name,
+                    statusClick = {
+                        test(checklist.id, stage.checklist.size)
+                    }
+                )
             }
         }
     }
+
 }
+//
+//@Composable
+//private fun getChecklist(
+//    modifier: Modifier = Modifier,
+//    state: StageContract.State,
+//    stageId: Int,
+//    checklistId: Int,
+//    loadChecklist: (Int) -> Unit,
+//) {
+//    LazyColumn {
+//        items(state.stageState.stageList) { stage ->
+//            stage.checklist.forEach() { checklist ->
+//                if (stage.id == stageId && checklist.id == checklistId) {
+//                    ChecklistCardItem(
+//                        modifier = modifier
+//                            .fillMaxWidth()
+//                            .fillParentMaxHeight(1f),
+//                        text = checklist.name,
+//                        statusClick = {
+//                            when (it) {
+//                                0 -> {
+//                                    loadChecklist(it)
+//                                    Log.d("----", "radioItem = $it")
+//                                }
+//                                1 -> {
+//                                    loadChecklist(it)
+//                                    Log.d("----", "radioItem = $it")
+//                                }
+//                                2 -> {
+//                                    loadChecklist(it)
+//                                    Log.d("----", "radioItem = $it")
+//                                }
+//                            }
+//                        }
+//                    )
+//                }
+//            }
+//        }
+//    }
+//}
 //
 //@Composable
 //private fun ChecklistCardItem2(

@@ -9,8 +9,11 @@ class StageContract {
     sealed class Event : ViewEvent {
         object FetchStage : Event()
         object FetchChecklist : Event()
-        //object LoadNextItem : Event()
-        data class LoadNextItem(val currentChecklistId: Int) : Event()
+
+        data class LoadNextItem(
+            val currentChecklistId: Int,
+            val maxId: Int,
+        ) : Event()
     }
 
     data class State(
