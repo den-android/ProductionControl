@@ -14,10 +14,14 @@ import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.St
 
 @Composable
 fun ChecklistScreen(
+    modifier: Modifier = Modifier,
     vm: StageViewModel,
     stageId: Int,
 ) {
     val state = vm.viewState.value
+
+
+}
 
 //    testGet(
 //        state = state,
@@ -32,67 +36,67 @@ fun ChecklistScreen(
 //            )
 //        }
 //    )
-    getChecklist(stageId = stageId,
-        onClick = {
-            vm.handleEvent(
-                event = StageContract.Event.LoadNextChecklistItem(
-                    currentChecklistId = it
-                )
-            )
-        })
-
-}
-
-@Composable
-fun getChecklist(
-    modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit,
-    stageId: Int,
-) {
-    Column {
-        ChecklistCardItem(
-            onRadioClick = { radioItem ->
-                when (radioItem) {
-                    0 -> {
-                        onClick(radioItem)
-                        Log.d("----", "radioItem = 0")
-                    }
-                    1 -> {
-                        onClick(radioItem)
-                        Log.d("----", "radioItem = 1")
-                    }
-                    2 -> {
-                        onClick(radioItem)
-                        Log.d("----", "radioItem = $radioItem")
-                    }
-                }
-            },
-            text = stageId.toString(),
-        )
-    }
-}
-
-@Composable
-fun testGet(
-    state: StageContract.State,
-    stageId: Int,
-    onClick: (Int) -> Unit,
-) {
-    LazyColumn {
-        items(state.stageList) { stage ->
-            stage.checklist.forEach() { checklist ->
-                if (stage.id == stageId && checklist.id == 0) {
-                    Text(
-                        text = checklist.name,
-                        modifier = Modifier.clickable {
-                            onClick(checklist.id)
-                        }
-                    )
-                }
-            }
-        }
-    }
-}
+//    getChecklist(stageId = stageId,
+//        onClick = {
+//            vm.handleEvent(
+//                event = StageContract.Event.LoadNextChecklistItem(
+//                    currentChecklistId = it
+//                )
+//            )
+//        })
+//
+//}
+//
+//@Composable
+//fun getChecklist(
+//    modifier: Modifier = Modifier,
+//    onClick: (Int) -> Unit,
+//    stageId: Int,
+//) {
+//    Column {
+//        ChecklistCardItem(
+//            onRadioClick = { radioItem ->
+//                when (radioItem) {
+//                    0 -> {
+//                        onClick(radioItem)
+//                        Log.d("----", "radioItem = 0")
+//                    }
+//                    1 -> {
+//                        onClick(radioItem)
+//                        Log.d("----", "radioItem = 1")
+//                    }
+//                    2 -> {
+//                        onClick(radioItem)
+//                        Log.d("----", "radioItem = $radioItem")
+//                    }
+//                }
+//            },
+//            text = stageId.toString(),
+//        )
+//    }
+//}
+//
+//@Composable
+//fun testGet(
+//    state: StageContract.State,
+//    stageId: Int,
+//    onClick: (Int) -> Unit,
+//) {
+//    LazyColumn {
+//        items(state.stageList) { stage ->
+//            stage.checklist.forEach() { checklist ->
+//                if (stage.id == stageId && checklist.id == 0) {
+//                    Text(
+//                        text = checklist.name,
+//                        modifier = Modifier.clickable {
+//                            onClick(checklist.id)
+//                        }
+//                    )
+//                }
+//            }
+//        }
+//    }
+//}
 
 //  val checklist = Checklist(0, "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text v")
 //

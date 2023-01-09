@@ -15,6 +15,7 @@ import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.St
 
 @Composable
 fun StageScreen(
+    modifier: Modifier = Modifier,
     navController: NavController,
     vm: StageViewModel,
 ) {
@@ -28,7 +29,7 @@ fun getStageList(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn {
-        items(state.stageList) { stage ->
+        items(state.stageState.stageList) { stage ->
             StageCardItem(
                 modifier = modifier
                     .fillMaxWidth()
@@ -45,7 +46,7 @@ fun getStageList(
         }
 
         item {
-            if (state.isLoading) {
+            if (state.stageState.isLoading) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
