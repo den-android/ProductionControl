@@ -1,92 +1,102 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen
+package net.denis.productioncontrol.presentation.screen.stage_screen.components
 
-import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextIndent
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import net.denis.productioncontrol.presentation.screen.stage_screen.components.ChecklistCardItem
-import net.denis.productioncontrol.presentation.screen.stage_screen.components.CustomRadioGroup
-import net.denis.productioncontrol.presentation.screen.stage_screen.state.StageState
-import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageContract
-import net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel.StageViewModel
+import net.denis.productioncontrol.presentation.model.Checklist
+import net.denis.productioncontrol.presentation.model.Stage
+import net.denis.productioncontrol.presentation.screen.stage_screen.StageViewModel
 
 @Composable
 fun ChecklistScreen(
     vm: StageViewModel,
     stageId: Int,
 ) {
-//    getChecklist(
-//        stageId = stageId,
-//        checklistId = 0,
-//        state = vm.viewState.value,
-//        loadChecklist = {
-//            vm.handleEvent(StageContract.Event.LoadNextItem(it))
-//        }
+    val viewState = vm.viewState.collectAsState()
+
+    viewState.value.stageList.forEach { stage ->
+        ChecklistScreenList(
+            checklist = stage.checklist[0],
+            stage = stage,
+            stageId = stageId,
+        ) {
+            vm::loadNextChecklist
+        }
+
+    }
+
+//    ChecklistScreenList(
+//        checklist =,
+//        stage = viewState.value.stageList[stageId],
+//        click = vm::loadNextChecklist,
+//        stageId = stageId
 //    )
 
-    val state = vm.viewState.value
-
-    load(
-        stageId = stageId,
-        state = state,
-        click = {
-            state.stageState.stageList.first().checklist.first().id
-        },
-        currentId = {
-
-        },
-        test = { first, second ->
-            vm.handleEvent(StageContract.Event.LoadNextItem(
-                currentChecklistId = first,
-                maxId = second
-            ))
-        }
-    )
 }
 
 @Composable
-fun load(
+private fun ChecklistScreenList(
     modifier: Modifier = Modifier,
-    state: StageContract.State,
+    checklist: Checklist,
+    stage: Stage,
     stageId: Int,
-    click: () -> Int,
-    currentId: (Int) -> Unit,
-    test: (Int, Int) -> Unit,
+    click: (Int) -> Unit
 ) {
-    state.stageState.stageList.forEach { stage ->
-        stage.checklist.forEach { checklist ->
-            if (stageId == stage.id && checklist.id == click()) {
-                ChecklistCardItem(
-                    text = checklist.name,
-                    statusClick = {
-                        test(checklist.id, stage.checklist.size)
-                    }
-                )
-            }
-        }
+    if (stage.id == stageId) {
+        ChecklistCardItem(text = checklist.name, statusClick = { click(it) })
     }
-
 }
+
+
+//@Composable
+//private fun getChecklist(
+//    modifier: Modifier = Modifier,
+//    state: StageContract.State,
+//    stageId: Int,
+//) {
+//    LazyColumn {
+//        items(state.stageState.stageList) { stage ->
+//            stage.checklist.forEach() { checklist ->
+//                if (stage.id == stageId && checklist.id == 0) {
+//                    ChecklistCardItem(
+//                        modifier = modifier
+//                            .fillMaxWidth()
+//                            .fillParentMaxHeight(1f),
+//                        text = checklist.name,
+//                        statusClick = {
+//                            when (it) {
+//                                0 -> {
+//
+//                                }
+//                                1 -> {
+//
+//                                }
+//                                2 -> {
+//
+//                                }
+//                            }
+//                        }
+//                    )
+//                }
+//            }
+//        }
+//    }
+//}
+
+
+//    state.stageState.stageList.forEach { stage ->
+//        stage.checklist.forEach { checklist ->
+//            if (stageId == stage.id && checklist.id == click()) {
+//                ChecklistCardItem(
+//                    text = checklist.name,
+//                    statusClick = {
+//                        test(checklist.id, stage.checklist.size)
+//                    }
+//                )
+//            }
+//        }
+//    }
+
 //
 //@Composable
 //private fun getChecklist(

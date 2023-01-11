@@ -9,6 +9,9 @@ import net.denis.productioncontrol.data.remote.RemoteDataSource
 import net.denis.productioncontrol.data.repository.StageRepository
 import net.denis.productioncontrol.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.data.interfaces.IStageRepository
+import net.denis.productioncontrol.presentation.redux.Action
+import net.denis.productioncontrol.presentation.redux.State
+import net.denis.productioncontrol.presentation.redux.Store
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -21,4 +24,10 @@ abstract class RepositoryModule {
     @Binds
     @ViewModelScoped
     abstract fun bindIRemoteDataSource(remoteDataSource: RemoteDataSource): IRemoteDataSource
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindStore(): Store<State, Action>
+
+
 }

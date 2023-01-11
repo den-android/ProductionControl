@@ -32,7 +32,7 @@ class RemoteDataSource @Inject constructor(
     }
 
     private val testRemoteDataSource: List<StageDto> = listOf(
-        StageDto(0, "Zero stage", checklistDto = listOf(
+        StageDto(0, "0 stage", checklistDto = listOf(
             ChecklistDto(0,"Нулевой6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666 чеклист")
         )),
 
@@ -42,7 +42,7 @@ class RemoteDataSource @Inject constructor(
             ChecklistDto(2,"second checklist"),
         )),
 
-        StageDto(2, "second stage", checklistDto = listOf(
+        StageDto(2, "2nd stage", checklistDto = listOf(
             ChecklistDto(0,"0-rd checklist"),
             ChecklistDto(1,"1-rd checklist"),
             ChecklistDto(2,"2-rd checklist"),

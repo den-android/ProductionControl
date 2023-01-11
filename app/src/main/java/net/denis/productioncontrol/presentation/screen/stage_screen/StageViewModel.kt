@@ -1,100 +1,83 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen.viewmodel
+package net.denis.productioncontrol.presentation.screen.stage_screen
 
-import android.util.Log
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.denis.productioncontrol.data.interfaces.IStageRepository
-import net.denis.productioncontrol.presentation.base.BaseViewModel
-import net.denis.productioncontrol.presentation.screen.stage_screen.state.StageState
-import net.denis.productioncontrol.util.Result
+import net.denis.productioncontrol.data.remote.RemoteDataSource
+import net.denis.productioncontrol.data.repository.StageRepository
+import net.denis.productioncontrol.presentation.model.Checklist
+import net.denis.productioncontrol.presentation.redux.BaseStore
+import net.denis.productioncontrol.presentation.redux.Store
 import javax.inject.Inject
 
 @HiltViewModel
 class StageViewModel @Inject constructor(
-    private val stageRepository: IStageRepository
-) : BaseViewModel<StageContract.Event, StageContract.State>() {
+    private val stageStore: StageStore
+) : ViewModel() {
 
-    override fun setInitialState() =
-        StageContract.State(
-            stageState = StageState(
-                isLoading = true,
-                stageList = emptyList(),
-            ),
-        )
-
-    override fun handleEvent(event: StageContract.Event) {
-        when (event) {
-            is StageContract.Event.FetchStage -> {
-                fetchStage()
-            }
-            is StageContract.Event.FetchChecklist -> {
-
-            }
-            is StageContract.Event.LoadNextItem -> {
-                loadNextChecklist(
-                    currentId = event.currentChecklistId,
-                    maxId = event.maxId,
-                )
-            }
-        }
-    }
+    val viewState: StateFlow<StageViewState> = stageStore.state
 
     init {
-        viewModelScope.launch {
-            handleEvent(event = StageContract.Event.FetchStage)
-        }
-    }
-
-    private fun loadNextChecklist(currentId: Int, maxId: Int): Int {
-        if (currentId < maxId) {
-            return currentId + 1
-        } else {
-            return currentId
-        }
+        fetchStage()
     }
 
     private fun fetchStage() {
         viewModelScope.launch {
-            stageRepository.getStage()
-                .collect { result ->
-                    when (result) {
-                        is Result.Loading -> {
-                            setState {
-                                copy(
-                                    stageState = stageState.copy(
-                                        isLoading = true
-                                    )
-                                )
-                            }
-                        }
-                        is Result.Success -> {
-                            val data = result.data ?: emptyList()
-                            setState {
-                                copy(
-                                    stageState = stageState.copy(
-                                        stageList = data,
-                                        isLoading = false,
-                                    )
-                                )
-                            }
-                        }
-                        is Result.Error -> {
-                            setState {
-                                copy(
-                                    stageState = stageState.copy(
-                                        error = result.message,
-                                        isLoading = false,
-                                    )
-                                )
-                            }
-                        }
-                    }
-                }
+            stageStore.dispatch(StageAction.FetchStage)
+        }
+    }
+
+    fun loadNextChecklist(currentId: Int) {
+        viewModelScope.launch {
+            stageStore.dispatch(StageAction.LoadNextChecklist(nextChecklistId = currentId))
         }
     }
 
 }
+//
+//    private fun fetchStage() {
+//        viewModelScope.launch {
+//            stageRepository.getStage()
+//                .collect { result ->
+//                    when (result) {
+//                        is Result.Loading -> {
+//                            setState {
+//                                copy(
+//                                    stageState = stageState.copy(
+//                                        isLoading = true
+//                                    )
+//                                )
+//                            }
+//                        }
+//                        is Result.Success -> {
+//                            val data = result.data ?: emptyList()
+//                            setState {
+//                                copy(
+//                                    stageState = stageState.copy(
+//                                        stageList = data,
+//                                        isLoading = false,
+//                                    )
+//                                )
+//                            }
+//                        }
+//                        is Result.Error -> {
+//                            setState {
+//                                copy(
+//                                    stageState = stageState.copy(
+//                                        error = result.message,
+//                                        isLoading = false,
+//                                    )
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//        }
+//    }
+//
+//}
 
 //
 //    private fun getStatus(status: String, stageId: Int, currentChecklistId: Int) {
@@ -135,7 +118,7 @@ class StageViewModel @Inject constructor(
 //            }
 //        }
 //    }
-//
+
 
 //
 

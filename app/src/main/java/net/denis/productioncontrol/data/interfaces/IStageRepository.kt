@@ -6,6 +6,6 @@ import net.denis.productioncontrol.util.Result
 
 interface IStageRepository {
 
-    suspend fun getStage(): Flow<Result<List<Stage>>>
+    suspend fun getStage(): Flow<List<Stage>>
 
 }
