@@ -1,11 +1,21 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen.components
+package net.denis.productioncontrol.presentation.features.common.components
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import android.util.Log
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.Divider
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import net.denis.productioncontrol.presentation.features.stage.mvi.StageViewModel
 import net.denis.productioncontrol.presentation.model.Checklist
 import net.denis.productioncontrol.presentation.model.Stage
-import net.denis.productioncontrol.presentation.screen.stage_screen.StageViewModel
 
 @Composable
 fun ChecklistScreen(
@@ -13,38 +23,43 @@ fun ChecklistScreen(
     stageId: Int,
 ) {
     val viewState = vm.viewState.collectAsState()
+    val stage = viewState.value.stageList
+
+    /***
+     * Костыль (исправить в первую очередь)
+     * надо узнать больше про Jetpack Composable чтобы починить
+     */
+    val currentChecklist = remember { mutableStateOf(0) }
 
     viewState.value.stageList.forEach { stage ->
-        ChecklistScreenList(
-            checklist = stage.checklist[0],
-            stage = stage,
-            stageId = stageId,
-        ) {
-            vm::loadNextChecklist
+        stage.checklist.forEach { checklist ->
+            if (stage.id == stageId && checklist.id == currentChecklist.value) {
+                ChecklistList(
+                    stage = stage,
+                    currentId = checklist.id,
+                    statusClick = {
+                        currentChecklist.value += 1
+                        Log.d("Logging", "radioItem click: ${it}")
+                    },
+                )
+            }
         }
-
     }
 
-//    ChecklistScreenList(
-//        checklist =,
-//        stage = viewState.value.stageList[stageId],
-//        click = vm::loadNextChecklist,
-//        stageId = stageId
-//    )
 
 }
 
 @Composable
-private fun ChecklistScreenList(
+private fun ChecklistList(
     modifier: Modifier = Modifier,
-    checklist: Checklist,
     stage: Stage,
-    stageId: Int,
-    click: (Int) -> Unit
+    currentId: Int,
+    statusClick: (Int) -> Unit,
 ) {
-    if (stage.id == stageId) {
-        ChecklistCardItem(text = checklist.name, statusClick = { click(it) })
-    }
+    ChecklistCardItem(
+        checklist = stage.checklist[currentId],
+        statusClick = { statusClick(it) },
+    )
 }
 
 

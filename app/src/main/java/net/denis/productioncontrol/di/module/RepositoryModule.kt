@@ -25,9 +25,4 @@ abstract class RepositoryModule {
     @ViewModelScoped
     abstract fun bindIRemoteDataSource(remoteDataSource: RemoteDataSource): IRemoteDataSource
 
-    @Binds
-    @ViewModelScoped
-    abstract fun bindStore(): Store<State, Action>
-
-
 }

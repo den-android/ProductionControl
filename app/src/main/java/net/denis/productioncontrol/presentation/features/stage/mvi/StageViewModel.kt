@@ -1,15 +1,12 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen
+package net.denis.productioncontrol.presentation.features.stage.mvi
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.denis.productioncontrol.data.remote.RemoteDataSource
-import net.denis.productioncontrol.data.repository.StageRepository
-import net.denis.productioncontrol.presentation.model.Checklist
-import net.denis.productioncontrol.presentation.redux.BaseStore
-import net.denis.productioncontrol.presentation.redux.Store
+import net.denis.productioncontrol.presentation.features.common.mvi.StageViewState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,21 +17,21 @@ class StageViewModel @Inject constructor(
     val viewState: StateFlow<StageViewState> = stageStore.state
 
     init {
-        fetchStage()
+        stageStartLoad()
     }
 
-    private fun fetchStage() {
+    private fun stageStartLoad() {
         viewModelScope.launch {
-            stageStore.dispatch(StageAction.FetchStage)
+            stageStore.dispatch(StageAction.StageLoading)
         }
     }
 
     fun loadNextChecklist(currentId: Int) {
         viewModelScope.launch {
-            stageStore.dispatch(StageAction.LoadNextChecklist(nextChecklistId = currentId))
+            Log.d("Logging", "ViewModel: ${currentId}")
+            stageStore.dispatch(StageAction.LoadNextChecklist(currentId = currentId))
         }
     }
-
 }
 //
 //    private fun fetchStage() {

@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen.components
+package net.denis.productioncontrol.presentation.features.common.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -11,15 +11,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.PermissionChecker
+import net.denis.productioncontrol.presentation.model.Checklist
 
 @Composable
 fun ChecklistCardItem(
     modifier: Modifier = Modifier,
-    text: String,
+    checklist: Checklist,
     statusClick: (Int) -> Unit,
 ) {
     val checklistNameScroll = rememberScrollState(0)
@@ -39,7 +38,7 @@ fun ChecklistCardItem(
                     overflow = TextOverflow.Clip,
                     textAlign = TextAlign.Start,
                     style = TextStyle(textIndent = TextIndent(20.sp)),
-                    text = text,
+                    text = checklist.name,
                 )
             }
             Box(modifier = modifier.weight(2f)) {
@@ -55,7 +54,6 @@ fun ChecklistCardItem(
 
         }
     }
-
 }
 
 /*

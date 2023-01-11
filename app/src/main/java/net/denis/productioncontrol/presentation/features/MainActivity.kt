@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen
+package net.denis.productioncontrol.presentation.features
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

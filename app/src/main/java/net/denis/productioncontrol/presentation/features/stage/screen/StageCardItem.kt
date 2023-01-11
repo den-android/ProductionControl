@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen.components
+package net.denis.productioncontrol.presentation.features.common.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

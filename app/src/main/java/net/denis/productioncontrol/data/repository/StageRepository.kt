@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.flow
 import net.denis.productioncontrol.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.presentation.model.Stage
 import net.denis.productioncontrol.data.interfaces.IStageRepository
+import net.denis.productioncontrol.presentation.model.Checklist
 import net.denis.productioncontrol.util.Result
 import javax.inject.Inject
 

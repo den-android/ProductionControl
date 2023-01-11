@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.screen.stage_screen
+package net.denis.productioncontrol.presentation.features.common.mvi
 
 import android.util.Log
 import net.denis.productioncontrol.presentation.redux.*

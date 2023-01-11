@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ProductionControl"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.screen.MainActivity"
+            android:name=".presentation.features.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ProductionControl">
