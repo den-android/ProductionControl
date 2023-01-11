@@ -5,13 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import net.denis.productioncontrol.data.remote.RemoteDataSource
-import net.denis.productioncontrol.data.repository.StageRepository
 import net.denis.productioncontrol.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.data.interfaces.IStageRepository
-import net.denis.productioncontrol.presentation.redux.Action
-import net.denis.productioncontrol.presentation.redux.State
-import net.denis.productioncontrol.presentation.redux.Store
+import net.denis.productioncontrol.data.remote.RemoteDataSource
+import net.denis.productioncontrol.data.repository.StageRepository
 
 @Module
 @InstallIn(ViewModelComponent::class)

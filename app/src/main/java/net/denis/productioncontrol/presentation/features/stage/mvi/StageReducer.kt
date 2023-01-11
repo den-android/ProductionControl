@@ -1,6 +1,5 @@
 package net.denis.productioncontrol.presentation.features.stage.mvi
 
-import android.util.Log
 import net.denis.productioncontrol.presentation.features.common.mvi.StageViewState
 import net.denis.productioncontrol.presentation.redux.Reducer
 

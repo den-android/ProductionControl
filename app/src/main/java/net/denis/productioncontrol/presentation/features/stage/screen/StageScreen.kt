@@ -1,17 +1,16 @@
-package net.denis.productioncontrol.presentation.features.stage_screen
+package net.denis.productioncontrol.presentation.features.stage.screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import net.denis.productioncontrol.presentation.features.common.components.CenteredProgressBar
+import net.denis.productioncontrol.presentation.features.stage.mvi.StageViewModel
 import net.denis.productioncontrol.presentation.model.Stage
 import net.denis.productioncontrol.presentation.navigation.Screen
-import net.denis.productioncontrol.presentation.features.common.components.CenteredProgressBar
-import net.denis.productioncontrol.presentation.features.common.components.StageCardItem
-import net.denis.productioncontrol.presentation.features.stage.mvi.StageViewModel
 
 @Composable
 fun StageScreen(
