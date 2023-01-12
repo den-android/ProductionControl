@@ -6,7 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import net.denis.productioncontrol.presentation.features.common.components.ChecklistScreen
+import net.denis.productioncontrol.presentation.features.stage_checklist.screen.ChecklistScreen
 import net.denis.productioncontrol.presentation.features.stage_checklist.mvi.StageViewModel
 import net.denis.productioncontrol.presentation.features.stage_screen.StageScreen
 import net.denis.productioncontrol.util.Constants.PARAM_STAGE_ID

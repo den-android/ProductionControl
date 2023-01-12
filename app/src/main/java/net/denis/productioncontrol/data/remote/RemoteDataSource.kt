@@ -15,7 +15,7 @@ class RemoteDataSource @Inject constructor(
          * Реализовать проверку от Retrofit.Response<>
          */
         delay(1000L)
-        val data = testRemoteDataSource
+        val data = smallRemoteDataSource
         return data
     }
 
@@ -48,7 +48,18 @@ class RemoteDataSource @Inject constructor(
                 ChecklistDto(6, "6-rd checklist"),
             )
         ),
+    )
 
-        )
+    private val smallRemoteDataSource: List<StageDto> = listOf(
+        StageDto(
+            0, "0 stage", checklistDto = listOf(
+                ChecklistDto(0, "zero"),
+                ChecklistDto(1, "one"),
+            )
+        ),
+        StageDto(
+            1, "1 stage", checklistDto = listOf()
+        ),
+    )
 
 }

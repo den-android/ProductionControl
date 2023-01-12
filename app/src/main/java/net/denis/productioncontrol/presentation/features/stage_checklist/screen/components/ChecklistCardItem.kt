@@ -26,6 +26,7 @@ fun ChecklistCardItem(
     modifier: Modifier = Modifier,
     checklist: Checklist,
     statusClick: (Int) -> Unit,
+    loadClick:(Int) -> Unit,
 ) {
     /**
      * Нужно подразобраться с Jetpack'ом, не до конца выкупаю как ведут себя некоторые элементы
@@ -70,6 +71,7 @@ fun ChecklistCardItem(
                                 statusClick(2)
                             }
                         }
+                        loadClick(checklist.id)
                     })
             }
         }

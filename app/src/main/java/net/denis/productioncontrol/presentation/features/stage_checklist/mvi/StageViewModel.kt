@@ -16,7 +16,8 @@ class StageViewModel @Inject constructor(
     val viewState: StateFlow<StageViewState> = stageStore.state
 
     init {
-        stageStartLoad()
+        //stageStartLoad()
+        testAction()
     }
 
     private fun stageStartLoad() {
@@ -25,10 +26,17 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun loadNextChecklist(currentId: Int) {
+    fun testAction() {
         viewModelScope.launch {
-            Log.d("Logging", "ViewModel: ${currentId}")
-            stageStore.dispatch(StageAction.LoadNextChecklist(currentId = currentId))
+            Log.d("Logging","VM")
+            stageStore.dispatch(StageAction.TestActionLoading)
         }
     }
+
+//    fun loadNextChecklist(currentId: Int) {
+//        viewModelScope.launch {
+//            stageStore.dispatch(StageAction.LoadingNextChecklist3(currentId))
+//            Log.d("Logging", "VM// currentId: ${currentId}")
+//        }
+//    }
 }

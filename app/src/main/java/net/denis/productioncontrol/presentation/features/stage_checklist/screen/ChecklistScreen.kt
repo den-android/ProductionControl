@@ -1,10 +1,9 @@
-package net.denis.productioncontrol.presentation.features.common.components
+package net.denis.productioncontrol.presentation.features.stage_checklist.screen
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import net.denis.productioncontrol.presentation.features.stage_checklist.mvi.StageViewModel
 import net.denis.productioncontrol.presentation.features.stage_checklist.screen.components.ChecklistCardItem
@@ -23,7 +22,7 @@ fun ChecklistScreen(
      * Нужно подразобраться с Jetpack'ом
      * Один и тот же затык, что и в [ChecklistCardItem]
      */
-    val currentChecklist = remember { mutableStateOf(0) }
+    val currentChecklist = rememberSaveable { mutableStateOf(0) }
 
     viewState.value.stageList.forEach { stage ->
         stage.checklist.forEach { checklist ->
@@ -31,16 +30,12 @@ fun ChecklistScreen(
                 ChecklistItem(
                     stage = stage,
                     currentId = checklist.id,
-                    statusClick = {
-                        currentChecklist.value += 1
-                        Log.d("Logging", "radioItem click: ${it}")
-                    },
+                    statusClick = {},
+                    loadClick = vm::testAction,
                 )
             }
         }
     }
-
-
 }
 
 @Composable
@@ -49,9 +44,11 @@ private fun ChecklistItem(
     stage: Stage,
     currentId: Int,
     statusClick: (Int) -> Unit,
+    loadClick: () -> Unit,
 ) {
     ChecklistCardItem(
         checklist = stage.checklist[currentId],
         statusClick = { statusClick(it) },
+        loadClick = { loadClick() },
     )
 }
