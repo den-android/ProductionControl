@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.features.common.components
+package net.denis.productioncontrol.presentation.features.stage_checklist.screen.components
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*

@@ -1,10 +1,6 @@
-package net.denis.productioncontrol.presentation.features.stage.mvi
+package net.denis.productioncontrol.presentation.features.stage_checklist.mvi
 
-import android.util.Log
-import kotlinx.coroutines.flow.collect
 import net.denis.productioncontrol.data.interfaces.IStageRepository
-import net.denis.productioncontrol.presentation.features.common.mvi.StageViewState
-import net.denis.productioncontrol.presentation.model.Checklist
 import net.denis.productioncontrol.presentation.redux.Middleware
 import net.denis.productioncontrol.presentation.redux.Store
 

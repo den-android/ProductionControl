@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.features.common.mvi
+package net.denis.productioncontrol.presentation.features.stage_checklist.mvi
 
 import net.denis.productioncontrol.presentation.model.Stage
 import net.denis.productioncontrol.presentation.redux.State

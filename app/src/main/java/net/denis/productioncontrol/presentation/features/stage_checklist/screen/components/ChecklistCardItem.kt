@@ -1,10 +1,16 @@
-package net.denis.productioncontrol.presentation.features.common.components
+package net.denis.productioncontrol.presentation.features.stage_checklist.screen.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -21,7 +27,14 @@ fun ChecklistCardItem(
     checklist: Checklist,
     statusClick: (Int) -> Unit,
 ) {
+    /**
+     * Нужно подразобраться с Jetpack'ом, не до конца выкупаю как ведут себя некоторые элементы
+     * и соответственно не всё работает как должно
+     */
+
     val checklistNameScroll = rememberScrollState(0)
+    val showAlertDialog = remember { mutableStateOf(false) }
+
     Card(
         modifier = modifier
             .padding(4.dp),
@@ -41,57 +54,36 @@ fun ChecklistCardItem(
                     text = checklist.name,
                 )
             }
+
             Box(modifier = modifier.weight(2f)) {
                 CustomRadioGroup(
                     onRadioClicked = {
+                        showAlertDialog.value = true
                         when (it) {
-                            Color.Green -> statusClick(0)
-                            Color.Yellow -> statusClick(1)
-                            Color.Red -> statusClick(2)
+                            Color.Green -> {
+                                statusClick(0)
+                            }
+                            Color.Yellow -> {
+                                statusClick(1)
+                            }
+                            Color.Red -> {
+                                statusClick(2)
+                            }
                         }
                     })
             }
-
         }
-    }
-}
 
-/*
-@Composable
-fun ChecklistCardItem(
-    text: String,
-    modifier: Modifier = Modifier,
-    onRadioClick: (Int) -> Unit,
-) {
-    Card(
-        shape = MaterialTheme.shapes.small,
-        modifier = modifier
-            .padding(4.dp)
-            .fillMaxSize(),
-        elevation = 4.dp,
-    ) {
-        Column {
-            Box(modifier = modifier.weight(2f)) {
-                Text(
-                    text = text,
-                    fontSize = 24.sp,
-                    textAlign = TextAlign.Start,
-                    modifier = modifier
-                        .padding(6.dp),
-                )
-            }
-            Box(modifier = modifier.weight(4f)) {
-                RadioGroup(onRadioClick = {
-                    when (it) {
-                        Color.Green -> 0
-                        Color.Yellow -> 1
-                        Color.Red -> 2
-                    }
-                })
-            }
-
+        if (showAlertDialog.value) {
+            CustomAlertDialog(
+                onDialogDismissClick = {
+                    showAlertDialog.value = false
+                },
+                onDialogOkClick = {
+                    showAlertDialog.value = false
+                }
+            )
         }
     }
 
 }
- */

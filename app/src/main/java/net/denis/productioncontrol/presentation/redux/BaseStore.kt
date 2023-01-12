@@ -3,11 +3,11 @@ package net.denis.productioncontrol.presentation.redux
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-open class BaseStore<S: State, A: Action> (
+open class BaseStore<S : State, A : Action>(
     initialState: S,
     private val reducer: Reducer<S, A>,
-    private val middlewares: List<Middleware<S,A>> = emptyList(),
-): Store<S,A> {
+    private val middlewares: List<Middleware<S, A>> = emptyList(),
+) : Store<S, A> {
 
     private val _state = MutableStateFlow(initialState)
     override val state: StateFlow<S> = _state
