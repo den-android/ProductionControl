@@ -16,12 +16,6 @@ class RemoteDataSource @Inject constructor() : IRemoteDataSource {
         return data
     }
 
-    override suspend fun getStageTest(): List<StageDto> {
-        delay(5000L)
-        val data = smallRemoteDataSource
-        return data
-    }
-
     private val testRemoteDataSource: List<StageDto> = listOf(
         StageDto(
             0, "0 stage", checklistDto = listOf(
