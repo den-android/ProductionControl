@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.presentation.features.stage_screen
+package net.denis.productioncontrol.presentation.features.stage_checklist.screen
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +22,7 @@ fun StageScreen(
     val viewState = vm.viewState.collectAsState()
     StageScreenList(
         showLoading = viewState.value.isLoading,
-        data = viewState.value.stageList,
+        stage = viewState.value.stageList,
         navController = navController,
     )
 }
@@ -31,23 +31,8 @@ fun StageScreen(
 private fun StageScreenList(
     modifier: Modifier = Modifier,
     showLoading: Boolean,
-    data: List<Stage>,
-    navController: NavController,
-) {
-    if (data != null) {
-        StageScreenItem(navController = navController, stage = data)
-    }
-
-    if (!showLoading) {
-        CenteredProgressBar()
-    }
-}
-
-@Composable
-private fun StageScreenItem(
-    modifier: Modifier = Modifier,
-    navController: NavController,
     stage: List<Stage>,
+    navController: NavController,
 ) {
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
@@ -71,4 +56,7 @@ private fun StageScreenItem(
 
     }
 
+    if (!showLoading) {
+        CenteredProgressBar()
+    }
 }

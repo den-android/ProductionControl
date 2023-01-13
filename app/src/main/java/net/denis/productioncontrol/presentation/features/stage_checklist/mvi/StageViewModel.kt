@@ -1,6 +1,5 @@
 package net.denis.productioncontrol.presentation.features.stage_checklist.mvi
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +15,7 @@ class StageViewModel @Inject constructor(
     val viewState: StateFlow<StageViewState> = stageStore.state
 
     init {
-        //stageStartLoad()
-        testAction()
+        stageStartLoad()
     }
 
     private fun stageStartLoad() {
@@ -26,17 +24,9 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun testAction() {
+    fun loadNextChecklist(currentId: Int) {
         viewModelScope.launch {
-            Log.d("Logging","VM")
-            stageStore.dispatch(StageAction.TestActionLoading)
+            stageStore.dispatch(StageAction.ChecklistLoading(currentId))
         }
     }
-
-//    fun loadNextChecklist(currentId: Int) {
-//        viewModelScope.launch {
-//            stageStore.dispatch(StageAction.LoadingNextChecklist3(currentId))
-//            Log.d("Logging", "VM// currentId: ${currentId}")
-//        }
-//    }
 }

@@ -18,4 +18,11 @@ class StageRepository @Inject constructor(
         }
     }
 
+    override suspend fun getStageTest(): Flow<List<Stage>> {
+        return flow {
+            val data = IRemoteDataSource.getStageTest()
+            emit(data.map { it.toStage() })
+        }
+    }
+
 }

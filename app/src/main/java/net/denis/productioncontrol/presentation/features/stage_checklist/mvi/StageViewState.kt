@@ -7,4 +7,4 @@ data class StageViewState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val stageList: List<Stage> = emptyList(),
-): State
+) : State

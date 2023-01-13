@@ -6,4 +6,6 @@ interface IRemoteDataSource {
 
     suspend fun getStage(): List<StageDto>
 
+    suspend fun getStageTest(): List<StageDto>
+
 }

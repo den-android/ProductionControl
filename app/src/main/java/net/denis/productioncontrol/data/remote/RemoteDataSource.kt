@@ -6,15 +6,18 @@ import net.denis.productioncontrol.data.remote.dto.ChecklistDto
 import net.denis.productioncontrol.data.remote.dto.StageDto
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(
+class RemoteDataSource @Inject constructor() : IRemoteDataSource {
 
-) : IRemoteDataSource {
+    //TODO(Implement a check from Retrofit.Response<>)
 
     override suspend fun getStage(): List<StageDto> {
-        /**
-         * Реализовать проверку от Retrofit.Response<>
-         */
         delay(1000L)
+        val data = testRemoteDataSource
+        return data
+    }
+
+    override suspend fun getStageTest(): List<StageDto> {
+        delay(5000L)
         val data = smallRemoteDataSource
         return data
     }
@@ -24,7 +27,7 @@ class RemoteDataSource @Inject constructor(
             0, "0 stage", checklistDto = listOf(
                 ChecklistDto(
                     0,
-                    "Нулевой6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666 чеклист"
+                    "Нулевой чеклист"
                 )
             )
         ),

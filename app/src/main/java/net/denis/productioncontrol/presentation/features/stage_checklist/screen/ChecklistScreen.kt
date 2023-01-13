@@ -3,10 +3,12 @@ package net.denis.productioncontrol.presentation.features.stage_checklist.screen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import net.denis.productioncontrol.presentation.features.stage_checklist.mvi.StageViewModel
 import net.denis.productioncontrol.presentation.features.stage_checklist.screen.components.ChecklistCardItem
+import net.denis.productioncontrol.presentation.features.stage_checklist.screen.components.CustomAlertDialog
 import net.denis.productioncontrol.presentation.model.Stage
 
 @Composable
@@ -17,11 +19,6 @@ fun ChecklistScreen(
     val viewState = vm.viewState.collectAsState()
     val stage = viewState.value.stageList
 
-    /**
-     * КОСТЫЛЬ (исправить в первую же очередь)
-     * Нужно подразобраться с Jetpack'ом
-     * Один и тот же затык, что и в [ChecklistCardItem]
-     */
     val currentChecklist = rememberSaveable { mutableStateOf(0) }
 
     viewState.value.stageList.forEach { stage ->
@@ -30,8 +27,15 @@ fun ChecklistScreen(
                 ChecklistItem(
                     stage = stage,
                     currentId = checklist.id,
-                    statusClick = {},
-                    loadClick = vm::testAction,
+                    statusClick = {
+                        /**
+                         * status code viewed checklist
+                         */
+                    },
+                    sendResult = {
+                        vm.loadNextChecklist(currentChecklist.value)
+                        currentChecklist.value += 1
+                    }
                 )
             }
         }
@@ -44,11 +48,26 @@ private fun ChecklistItem(
     stage: Stage,
     currentId: Int,
     statusClick: (Int) -> Unit,
-    loadClick: () -> Unit,
+    sendResult: () -> Unit,
 ) {
+    val showAlertDialog = remember { mutableStateOf(false) }
+
+    if (showAlertDialog.value) {
+        CustomAlertDialog(
+            onDialogDismissClick = {
+                showAlertDialog.value = false
+            },
+            onDialogOkClick = {
+                showAlertDialog.value = false
+                sendResult()
+            }
+        )
+    }
     ChecklistCardItem(
         checklist = stage.checklist[currentId],
-        statusClick = { statusClick(it) },
-        loadClick = { loadClick() },
+        statusClick = {
+            statusClick(it)
+            showAlertDialog.value = true
+        },
     )
 }
