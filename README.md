@@ -26,7 +26,7 @@
 + [Flow](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/)
 + [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 + [JetPack Compose](https://developer.android.com/jetpack/androidx/releases/compose)
-+ [ViewModek](https://developer.android.com/topic/libraries/architecture/viewmodel)
++ [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 + [Room](https://developer.android.com/training/data-storage/room)
 + [Retrofit](https://github.com/square/retrofit)
 + [OkHttp](https://square.github.io/okhttp/)
