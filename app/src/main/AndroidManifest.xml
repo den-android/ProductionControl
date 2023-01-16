@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="net.denis.productioncontrol">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:name=".di.ProductionControlApp"
+        android:name="net.denis.productioncontrol.core.di.ProductionControlApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +17,7 @@
         android:theme="@style/Theme.ProductionControl"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.features.MainActivity"
+            android:name="net.denis.productioncontrol.core.presentation.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ProductionControl">
