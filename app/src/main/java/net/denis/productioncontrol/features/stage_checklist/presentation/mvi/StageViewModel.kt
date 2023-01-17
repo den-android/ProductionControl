@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StageViewModel @Inject constructor(
-    private val stageStore: StageStore
+    private val stageStore: StageStore,
 ) : ViewModel() {
 
-    val viewState: StateFlow<StageViewState> = stageStore.state
+    val viewState: StateFlow<StageState> = stageStore.state
 
     init {
         stageStartLoad()
@@ -24,9 +24,9 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun loadNextChecklist(currentId: Int) {
+    fun sendChecklistResults(stageId: Int, checklistResults: List<Int>) {
         viewModelScope.launch {
-            stageStore.dispatch(StageAction.ChecklistLoading(currentId))
+            stageStore.dispatch(StageAction.SendChecklistItems(stageId,checklistResults))
         }
     }
 }

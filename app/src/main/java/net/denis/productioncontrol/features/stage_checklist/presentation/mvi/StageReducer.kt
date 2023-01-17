@@ -2,9 +2,9 @@ package net.denis.productioncontrol.features.stage_checklist.presentation.mvi
 
 import net.denis.productioncontrol.core.presentation.redux.Reducer
 
-class StageReducer : Reducer<StageViewState, StageAction> {
+class StageReducer : Reducer<StageState, StageAction> {
 
-    override fun reduce(currentState: StageViewState, action: StageAction): StageViewState {
+    override fun reduce(currentState: StageState, action: StageAction): StageState {
         return when (action) {
 
             is StageAction.StageLoading -> {
@@ -17,12 +17,6 @@ class StageReducer : Reducer<StageViewState, StageAction> {
                 currentState.copy(
                     isLoading = false,
                     stageList = action.stage,
-                )
-            }
-
-            is StageAction.ChecklistLoading -> {
-                currentState.copy(
-                    isLoading = true
                 )
             }
 

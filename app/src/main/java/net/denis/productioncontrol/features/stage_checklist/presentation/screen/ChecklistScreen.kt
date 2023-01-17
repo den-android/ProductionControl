@@ -1,5 +1,8 @@
 package net.denis.productioncontrol.features.stage_checklist.presentation.screen
 
+import android.util.Log
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +13,7 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.Sta
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.ChecklistCardItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.CustomAlertDialog
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
+import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageState
 
 @Composable
 fun ChecklistScreen(
@@ -19,55 +23,58 @@ fun ChecklistScreen(
     val viewState = vm.viewState.collectAsState()
     val stage = viewState.value.stageList
 
-    val currentChecklist = rememberSaveable { mutableStateOf(0) }
-
-    viewState.value.stageList.forEach { stage ->
-        stage.checklist.forEach { checklist ->
-            if (stage.id == stageId && checklist.id == currentChecklist.value) {
-                ChecklistItem(
-                    stage = stage,
-                    currentId = checklist.id,
-                    statusClick = {
-                        /**
-                         * status code viewed checklist
-                         */
-                    },
-                    sendResult = {
-                        vm.loadNextChecklist(currentChecklist.value)
-                        currentChecklist.value += 1
-                    }
-                )
-            }
-        }
-    }
+    ChecklistItem(
+        stage = stage,
+        stageId = stageId,
+        sendResult = {
+//            vm.sendChecklistResults(
+//                stageId = stageId,
+//                checklistResults = listOf(0,1),
+//            )
+        },
+    )
 }
 
 @Composable
 private fun ChecklistItem(
     modifier: Modifier = Modifier,
-    stage: Stage,
-    currentId: Int,
-    statusClick: (Int) -> Unit,
+    stage: List<Stage>,
+    stageId: Int,
     sendResult: () -> Unit,
 ) {
-    val showAlertDialog = remember { mutableStateOf(false) }
+    val showAlertDialog = rememberSaveable { mutableStateOf(false) }
+    val currentChecklist = rememberSaveable { mutableStateOf(0) }
+    var testCollectedChecklist: MutableList<Int> = mutableListOf()
+
+    stage.forEach { stage ->
+        stage.checklist.forEach { checklist ->
+            if (stage.id == stageId && checklist.id == currentChecklist.value) {
+                ChecklistCardItem(
+                    checklist = checklist,
+                    statusClick = { statusId ->
+                        showAlertDialog.value = true
+                        testCollectedChecklist.add(statusId)
+                    }
+                )
+            } else if (stage.id == stageId && stage.checklist.size == currentChecklist.value)
+            {
+                Log.d("Logging", "AAAAAAAAAAAAAa ${testCollectedChecklist}")
+            }
+        }
+    }
 
     if (showAlertDialog.value) {
         CustomAlertDialog(
             onDialogDismissClick = {
                 showAlertDialog.value = false
+                sendResult()
             },
             onDialogOkClick = {
                 showAlertDialog.value = false
+                currentChecklist.value += 1
                 sendResult()
             }
         )
     }
-    ChecklistCardItem(
-        checklist = stage.checklist[currentId],
-        statusClick = {
-            statusClick(it)
-            showAlertDialog.value = true
-        },
-    )
+
 }

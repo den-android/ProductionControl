@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class StageStore @Inject constructor(
     stageRepository: IStageRepository,
-) : BaseStore<StageViewState, StageAction>(
-    initialState = StageViewState(),
+) : BaseStore<StageState, StageAction>(
+    initialState = StageState(),
     reducer = StageReducer(),
     middlewares = listOf(
         //LoggingMiddleware(),

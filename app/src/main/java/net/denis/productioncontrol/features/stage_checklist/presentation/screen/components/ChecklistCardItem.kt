@@ -23,7 +23,7 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.model.C
 fun ChecklistCardItem(
     modifier: Modifier = Modifier,
     checklist: Checklist,
-    statusClick: (Int) -> Unit,
+    statusClick:(Int) -> Unit,
 ) {
     val checklistNameScroll = rememberScrollState(0)
 

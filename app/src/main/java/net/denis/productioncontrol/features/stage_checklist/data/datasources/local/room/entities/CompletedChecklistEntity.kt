@@ -5,12 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "stage_table"
+    tableName = "completed_checklist_table"
 )
-data class StageEntity(
+data class CompletedChecklistEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
-    @ColumnInfo(collate = ColumnInfo.NOCASE, name = "stage_name")
-    val name: String,
+    val items: List<Int>
 )

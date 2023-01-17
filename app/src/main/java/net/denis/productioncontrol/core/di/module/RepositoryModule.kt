@@ -4,9 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.ChecklistDatabase
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.LocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.RemoteDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.IStageApi
+import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
 import net.denis.productioncontrol.features.stage_checklist.data.repository.StageRepository
@@ -24,4 +24,7 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun bindIRemoteDataSource(remoteDataSource: RemoteDataSource): IRemoteDataSource
 
+    @Binds
+    @Singleton
+    abstract fun bindILocalDataSource(localDataSource: LocalDataSource): ILocalDataSource
 }
