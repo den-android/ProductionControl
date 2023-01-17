@@ -1,9 +1,9 @@
-package net.denis.productioncontrol.features.stage_checklist.data.remote
+package net.denis.productioncontrol.features.stage_checklist.data.datasources.remote
 
 import kotlinx.coroutines.delay
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.remote.dto.ChecklistDto
-import net.denis.productioncontrol.features.stage_checklist.data.remote.dto.StageDto
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.ChecklistDto
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.StageDto
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor() : IRemoteDataSource {

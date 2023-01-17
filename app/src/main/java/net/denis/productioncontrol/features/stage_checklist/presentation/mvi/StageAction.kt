@@ -9,4 +9,9 @@ sealed class StageAction : Action {
     data class StageLoaded(val stage: List<Stage>) : StageAction()
 
     data class ChecklistLoading(val currentId: Int) : StageAction()
+
+    data class ShowSnackbar(
+        val message: String,
+        val action: String? = null,
+    ) : StageAction()
 }

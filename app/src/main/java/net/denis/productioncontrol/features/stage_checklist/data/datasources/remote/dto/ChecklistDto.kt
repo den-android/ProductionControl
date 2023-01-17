@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.features.stage_checklist.data.remote.dto
+package net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto
 
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Checklist
 

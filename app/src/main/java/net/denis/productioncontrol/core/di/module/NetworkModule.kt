@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.remote.StageApi
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.IStageApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -43,12 +43,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideStageApi(gson: Gson, httpClient: OkHttpClient): StageApi {
+    fun provideStageApi(gson: Gson, httpClient: OkHttpClient): IStageApi {
         return Retrofit.Builder()
             .baseUrl("")
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(StageApi::class.java)
+            .create(IStageApi::class.java)
     }
 }

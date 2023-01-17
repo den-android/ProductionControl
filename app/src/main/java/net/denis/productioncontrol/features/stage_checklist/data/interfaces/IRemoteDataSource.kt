@@ -1,6 +1,6 @@
 package net.denis.productioncontrol.features.stage_checklist.data.interfaces
 
-import net.denis.productioncontrol.features.stage_checklist.data.remote.dto.StageDto
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.StageDto
 
 interface IRemoteDataSource {
 

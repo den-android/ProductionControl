@@ -8,12 +8,12 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.model.S
 import javax.inject.Inject
 
 class StageRepository @Inject constructor(
-    private val IRemoteDataSource: IRemoteDataSource,
+    private val remoteDataSource: IRemoteDataSource,
 ) : IStageRepository {
 
     override suspend fun getStage(): Flow<List<Stage>> {
         return flow {
-            val data = IRemoteDataSource.getStage()
+            val data = remoteDataSource.getStage()
             emit(data.map { it.toStage() })
         }
     }
