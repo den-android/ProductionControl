@@ -6,7 +6,7 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.model.S
 
 interface IStageRepository {
 
-    suspend fun getStage(): Flow<List<Stage>>
+    //suspend fun getStage(): Flow<List<Stage>>
 
     suspend fun getTestStage(): Flow<List<Stage>>
 

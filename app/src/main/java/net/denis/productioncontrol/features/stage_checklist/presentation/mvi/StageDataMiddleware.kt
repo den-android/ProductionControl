@@ -48,7 +48,7 @@ class StageDataMiddleware(
     }
 
     private suspend fun stageLoading(store: Store<StageState, StageAction>) {
-        stageRepository.getStage().collect { data ->
+        stageRepository.getTestStage().collect { data ->
             store.dispatch(StageAction.StageLoaded(data))
         }
     }

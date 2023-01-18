@@ -5,8 +5,8 @@ import net.denis.productioncontrol.features.stage_checklist.data.datasources.rem
 
 interface IRemoteDataSource {
 
-    suspend fun getStage(): NetworkResult<List<StageDto>>
-
+//    suspend fun getStage(): NetworkResult<List<StageDto>>
+//
     suspend fun getTestStage(): List<StageDto>
 
 }

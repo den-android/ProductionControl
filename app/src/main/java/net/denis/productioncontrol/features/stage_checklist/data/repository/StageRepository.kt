@@ -23,9 +23,9 @@ class StageRepository @Inject constructor(
         }
     }
 
-    override suspend fun getStage(): Flow<List<Stage>> {
-        TODO("Get response from retrofit here")
-    }
+//    override suspend fun getStage(): Flow<List<Stage>> {
+//        TODO("Get response from retrofit here")
+//    }
 
     override suspend fun addChecklistItem(completedChecklistItem: CompletedChecklistItem) {
         localDataSource.addChecklistItem(completedChecklistItem.toCompletedChecklistItemEntity())

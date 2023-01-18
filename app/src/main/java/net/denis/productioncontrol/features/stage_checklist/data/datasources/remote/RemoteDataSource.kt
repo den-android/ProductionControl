@@ -10,12 +10,12 @@ import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ISta
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
-    private val stageApi: IStageApi,
+   // private val stageApi: IStageApi,
 ) : IRemoteDataSource {
 
-    override suspend fun getStage(): NetworkResult<List<StageDto>> {
-        return handleApi { stageApi.getStage() }
-    }
+//    override suspend fun getStage(): NetworkResult<List<StageDto>> {
+//        return handleApi { stageApi.getStage() }
+//    }
 
     override suspend fun getTestStage(): List<StageDto> {
         delay(1000L)

@@ -7,8 +7,8 @@ import retrofit2.http.Headers
 
 interface IStageApi {
 
-    @GET("")
-    @Headers("Content-type: application/json")
-    suspend fun getStage(): Response<List<StageDto>>
+//    @GET("")
+//    @Headers("Content-type: application/json")
+//    suspend fun getStage(): Response<List<StageDto>>
 
 }
