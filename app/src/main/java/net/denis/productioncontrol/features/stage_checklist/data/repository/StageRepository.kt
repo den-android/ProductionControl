@@ -22,6 +22,10 @@ class StageRepository @Inject constructor(
         }
     }
 
+    override suspend fun getStage(): Flow<List<Stage>> {
+        TODO("Get response from retrofit here")
+    }
+
     override suspend fun sendChecklist(stageId: Int, checklistResult: List<Int>): Boolean {
         Log.d("Logging", "[Repository]\nAnswers from the checklist: ${stageId}\n${checklistResult}")
         val randomResult: Int = Random.nextInt(0, 3)
