@@ -15,9 +15,9 @@ class StageRepository @Inject constructor(
     private val localDataSource: ILocalDataSource,
 ) : IStageRepository {
 
-    override suspend fun getStage(): Flow<List<Stage>> {
+    override suspend fun getTestStage(): Flow<List<Stage>> {
         return flow {
-            val data = remoteDataSource.getStage()
+            val data = remoteDataSource.getTestStage()
             emit(data.map { it.toStage() })
         }
     }

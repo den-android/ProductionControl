@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.CompletedChecklistDatabase
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.CompletedChecklistDatabase
 import javax.inject.Singleton
 
 @Module
@@ -15,7 +15,7 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideCompletedChecklistDatabase(app: Application): CompletedChecklistDatabase{
+    fun provideCompletedChecklistDatabase(app: Application): CompletedChecklistDatabase {
         return Room.databaseBuilder(
             app,
             CompletedChecklistDatabase::class.java,

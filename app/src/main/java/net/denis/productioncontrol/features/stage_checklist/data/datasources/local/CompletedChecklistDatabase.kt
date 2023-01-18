@@ -1,13 +1,13 @@
-package net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room
+package net.denis.productioncontrol.features.stage_checklist.data.datasources.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.entities.CompletedChecklistEntity
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.entities.CompletedChecklistItemEntity
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ICompletedChecklistDao
 
 @Database(
     entities = [
-        CompletedChecklistEntity::class,
+        CompletedChecklistItemEntity::class,
     ],
     version = 1
 )

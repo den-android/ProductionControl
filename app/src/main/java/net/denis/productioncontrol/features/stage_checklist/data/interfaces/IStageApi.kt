@@ -1,4 +1,4 @@
-package net.denis.productioncontrol.features.stage_checklist.data.datasources.remote
+package net.denis.productioncontrol.features.stage_checklist.data.interfaces
 
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.StageDto
 import retrofit2.Response

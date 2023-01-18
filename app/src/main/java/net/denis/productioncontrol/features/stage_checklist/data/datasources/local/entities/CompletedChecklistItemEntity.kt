@@ -1,13 +1,13 @@
-package net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.entities
+package net.denis.productioncontrol.features.stage_checklist.data.datasources.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "checklist_answer_item"
+    tableName = "completed_checklist_item_table"
 )
-data class ChecklistAnswerItem(
+data class CompletedChecklistItemEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "stage_id")
     val stageId: Int,
@@ -17,4 +17,4 @@ data class ChecklistAnswerItem(
 
     @ColumnInfo(name = "status_message")
     val statusMessage: String?,
- 
+)

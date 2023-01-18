@@ -4,7 +4,6 @@ import android.util.Log
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
 import net.denis.productioncontrol.core.presentation.redux.Middleware
 import net.denis.productioncontrol.core.presentation.redux.Store
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.CollectedChecklist
 
 class StageDataMiddleware(
     private val stageRepository: IStageRepository,

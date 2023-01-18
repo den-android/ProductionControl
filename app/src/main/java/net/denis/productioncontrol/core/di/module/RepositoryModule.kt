@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.room.LocalDataSource
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.LocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.RemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource

@@ -1,6 +1,7 @@
 package net.denis.productioncontrol.features.stage_checklist.presentation.model
 
-data class CollectedChecklist(
+data class CompletedChecklistItem(
     val stageId: Int,
-    val checklistResult: List<Int>,
+    val statusCode: Int,
+    val message: String?,
 )

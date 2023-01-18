@@ -1,16 +1,23 @@
 package net.denis.productioncontrol.features.stage_checklist.data.datasources.remote
 
 import kotlinx.coroutines.delay
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
+import net.denis.productioncontrol.core.util.NetworkResult
+import net.denis.productioncontrol.core.util.handleApi
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.ChecklistDto
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.StageDto
+import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
+import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageApi
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor() : IRemoteDataSource {
+class RemoteDataSource @Inject constructor(
+    private val stageApi: IStageApi,
+) : IRemoteDataSource {
 
-    //TODO(Implement a check from Retrofit.Response<>)
+    override suspend fun getStage(): NetworkResult<List<StageDto>> {
+        return handleApi { stageApi.getStage() }
+    }
 
-    override suspend fun getStage(): List<StageDto> {
+    override suspend fun getTestStage(): List<StageDto> {
         delay(1000L)
         val data = testRemoteDataSource
         return data
