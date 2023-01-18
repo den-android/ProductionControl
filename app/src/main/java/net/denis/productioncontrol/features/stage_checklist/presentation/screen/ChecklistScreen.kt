@@ -1,19 +1,15 @@
 package net.denis.productioncontrol.features.stage_checklist.presentation.screen
 
 import android.util.Log
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageViewModel
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.ChecklistCardItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.CustomAlertDialog
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
-import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageState
 
 @Composable
 fun ChecklistScreen(
@@ -27,10 +23,7 @@ fun ChecklistScreen(
         stage = stage,
         stageId = stageId,
         sendResult = {
-//            vm.sendChecklistResults(
-//                stageId = stageId,
-//                checklistResults = listOf(0,1),
-//            )
+            vm.sendChecklistResults(stageId = stageId, checklistItemId = 0, statusCode = 2, message = "aatytdrrcftyufutyf jhthfgn678tygh")
         },
     )
 }
@@ -53,12 +46,11 @@ private fun ChecklistItem(
                     checklist = checklist,
                     statusClick = { statusId ->
                         showAlertDialog.value = true
-                        testCollectedChecklist.add(statusId)
+                        //testCollectedChecklist.add(statusId)
                     }
                 )
-            } else if (stage.id == stageId && stage.checklist.size == currentChecklist.value)
-            {
-                Log.d("Logging", "AAAAAAAAAAAAAa ${testCollectedChecklist}")
+            } else if (stage.id == stageId && stage.checklist.size == currentChecklist.value) {
+                //Log.d("Logging", "AAAAAAAAAAAAAa ${testCollectedChecklist}")
             }
         }
     }

@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.flow
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import javax.inject.Inject
 import kotlin.random.Random
@@ -26,10 +27,9 @@ class StageRepository @Inject constructor(
         TODO("Get response from retrofit here")
     }
 
-    override suspend fun sendChecklist(stageId: Int, checklistResult: List<Int>): Boolean {
-        Log.d("Logging", "[Repository]\nAnswers from the checklist: ${stageId}\n${checklistResult}")
-        val randomResult: Int = Random.nextInt(0, 3)
-        return randomResult != 0
+    override suspend fun addChecklistItem(completedChecklistItem: CompletedChecklistItem) {
+        localDataSource.addChecklistItem(completedChecklistItem.toCompletedChecklistItemEntity())
     }
+
 
 }

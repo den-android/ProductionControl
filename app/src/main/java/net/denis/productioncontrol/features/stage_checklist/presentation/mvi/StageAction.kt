@@ -10,8 +10,10 @@ sealed class StageAction : Action {
 
     data class SendChecklistItems(
         val stageId: Int,
-        val checklistResults: List<Int>
+        val checklistItemId: Int,
+        val statusCode: Int,
+        val message: String?,
     ) : StageAction()
 
-    object SendChecklistResult: StageAction()
+    object SendChecklistResult : StageAction()
 }

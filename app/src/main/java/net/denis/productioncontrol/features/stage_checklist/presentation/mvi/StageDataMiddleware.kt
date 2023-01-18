@@ -4,6 +4,7 @@ import android.util.Log
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
 import net.denis.productioncontrol.core.presentation.redux.Middleware
 import net.denis.productioncontrol.core.presentation.redux.Store
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
 
 class StageDataMiddleware(
     private val stageRepository: IStageRepository,
@@ -20,21 +21,26 @@ class StageDataMiddleware(
             }
 
             is StageAction.SendChecklistItems -> {
-                val sendStatus: Boolean = stageRepository.sendChecklist(
+                val data: CompletedChecklistItem = CompletedChecklistItem(
                     stageId = action.stageId,
-                    checklistResult = action.checklistResults,
+                    checklistItemId = action.checklistItemId,
+                    statusCode = action.statusCode,
+                    message = action.message,
                 )
-                if (sendStatus == true) {
-                    Log.d("Logging", "" +
-                            "\n[StageDataMiddleware]" +
-                            "\nSUCCESS - ${sendStatus}" +
-                            "")
-                } else {
-                    Log.d("Logging", "" +
-                            "\n[StageDataMiddleware]" +
-                            "\nFAILURE - ${sendStatus}" +
-                            "")
-                }
+//                val sendStatus: Boolean = stageRepository.addChecklistItem(
+//                    completedChecklistItem = data
+//                )
+//                if (sendStatus == true) {
+//                    Log.d("Logging", "" +
+//                            "\n[StageDataMiddleware]" +
+//                            "\nSUCCESS - ${sendStatus}" +
+//                            "")
+//                } else {
+//                    Log.d("Logging", "" +
+//                            "\n[StageDataMiddleware]" +
+//                            "\nFAILURE - ${sendStatus}" +
+//                            "")
+//                }
             }
 
             else -> currentState

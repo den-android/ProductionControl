@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.LocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.RemoteDataSource
+import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ICompletedChecklistDao
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository

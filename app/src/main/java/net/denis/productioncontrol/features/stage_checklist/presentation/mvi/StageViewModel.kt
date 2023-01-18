@@ -24,9 +24,21 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun sendChecklistResults(stageId: Int, checklistResults: List<Int>) {
+    fun sendChecklistResults(
+        stageId: Int,
+        checklistItemId: Int,
+        statusCode: Int,
+        message: String?
+    ) {
         viewModelScope.launch {
-            stageStore.dispatch(StageAction.SendChecklistItems(stageId,checklistResults))
+            stageStore.dispatch(
+                StageAction.SendChecklistItems(
+                    stageId,
+                    checklistItemId,
+                    statusCode,
+                    message
+                )
+            )
         }
     }
 }
