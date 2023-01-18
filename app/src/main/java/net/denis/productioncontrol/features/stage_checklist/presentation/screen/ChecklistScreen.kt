@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageViewModel
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.ChecklistCardItem
@@ -23,7 +24,7 @@ fun ChecklistScreen(
         stage = stage,
         stageId = stageId,
         sendResult = {
-            vm.sendChecklistResults(stageId = stageId, checklistItemId = 0, statusCode = 2, message = "aatytdrrcftyufutyf jhthfgn678tygh")
+            vm.sendChecklistResults(rawChecklistItem = it)
         },
     )
 }
@@ -33,11 +34,10 @@ private fun ChecklistItem(
     modifier: Modifier = Modifier,
     stage: List<Stage>,
     stageId: Int,
-    sendResult: () -> Unit,
+    sendResult: (CompletedChecklistItem) -> Unit,
 ) {
     val showAlertDialog = rememberSaveable { mutableStateOf(false) }
     val currentChecklist = rememberSaveable { mutableStateOf(0) }
-    var testCollectedChecklist: MutableList<Int> = mutableListOf()
 
     stage.forEach { stage ->
         stage.checklist.forEach { checklist ->
@@ -46,27 +46,30 @@ private fun ChecklistItem(
                     checklist = checklist,
                     statusClick = { statusId ->
                         showAlertDialog.value = true
-                        //testCollectedChecklist.add(statusId)
+                        sendResult(
+                            CompletedChecklistItem(
+                                stageId,
+                                currentChecklist.value,
+                                statusId,
+                                "",
+                            )
+                        )
+
                     }
                 )
-            } else if (stage.id == stageId && stage.checklist.size == currentChecklist.value) {
-                //Log.d("Logging", "AAAAAAAAAAAAAa ${testCollectedChecklist}")
             }
         }
-    }
 
-    if (showAlertDialog.value) {
-        CustomAlertDialog(
-            onDialogDismissClick = {
-                showAlertDialog.value = false
-                sendResult()
-            },
-            onDialogOkClick = {
-                showAlertDialog.value = false
-                currentChecklist.value += 1
-                sendResult()
-            }
-        )
+        if (showAlertDialog.value) {
+            CustomAlertDialog(
+                onDialogDismissClick = {
+                    showAlertDialog.value = false
+                },
+                onDialogOkClick = {
+                    showAlertDialog.value = false
+                    currentChecklist.value += 1
+                }
+            )
+        }
     }
-
 }

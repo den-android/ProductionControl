@@ -21,12 +21,8 @@ class StageDataMiddleware(
             }
 
             is StageAction.SendChecklistItems -> {
-                val data: CompletedChecklistItem = CompletedChecklistItem(
-                    stageId = action.stageId,
-                    checklistItemId = action.checklistItemId,
-                    statusCode = action.statusCode,
-                    message = action.message,
-                )
+                val data: CompletedChecklistItem = action.completedChecklistItem
+                stageRepository.addChecklistItem(data)
 //                val sendStatus: Boolean = stageRepository.addChecklistItem(
 //                    completedChecklistItem = data
 //                )

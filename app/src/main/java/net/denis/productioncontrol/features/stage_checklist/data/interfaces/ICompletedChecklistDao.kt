@@ -8,7 +8,7 @@ import net.denis.productioncontrol.features.stage_checklist.data.datasources.loc
 interface ICompletedChecklistDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addChecklistItem(completedChecklistItemEntity: CompletedChecklistItemEntity)
+    suspend fun addChecklistItem(completedChecklistItemEntity: CompletedChecklistItemEntity)
 
 //    @Query("SELECT * FROM completed_checklist_item_table")
 //    suspend fun readCompletedChecklistItem(completedChecklistItemEntity: CompletedChecklistItemEntity)

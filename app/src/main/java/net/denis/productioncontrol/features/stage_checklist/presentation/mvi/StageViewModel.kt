@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,20 +25,10 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun sendChecklistResults(
-        stageId: Int,
-        checklistItemId: Int,
-        statusCode: Int,
-        message: String?
-    ) {
+    fun sendChecklistResults(rawChecklistItem: CompletedChecklistItem) {
         viewModelScope.launch {
             stageStore.dispatch(
-                StageAction.SendChecklistItems(
-                    stageId,
-                    checklistItemId,
-                    statusCode,
-                    message
-                )
+                StageAction.SendChecklistItems(rawChecklistItem)
             )
         }
     }
