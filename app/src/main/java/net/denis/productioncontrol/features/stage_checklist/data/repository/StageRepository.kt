@@ -22,7 +22,8 @@ class StageRepository @Inject constructor(
     }
 
     override suspend fun sendCompletedChecklist(checklistItem: ChecklistItem) {
-        if (remoteDataSource.sendCompletedChecklist(checklistItem)) {
+        val response = remoteDataSource.sendCompletedChecklist(checklistItem)
+        if (response) {
             removeChecklistItemByStageId(checklistItem.stageId)
         }
     }

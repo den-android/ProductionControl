@@ -10,6 +10,7 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.model.C
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageViewModel
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.ChecklistCardItem
+import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.CustomAlertDialog
 
 @Composable
 fun ChecklistScreen(
@@ -22,7 +23,7 @@ fun ChecklistScreen(
     ChecklistItem(
         stage = stage,
         stageId = stageId,
-        sendResult = vm::sendChecklistResults
+        sendResult = vm::sendChecklistResult,
     )
 
 }
@@ -43,6 +44,7 @@ private fun ChecklistItem(
                 ChecklistCardItem(
                     checklist = checklist,
                     statusClick = { statusId ->
+                        showAlertDialog.value = true
                         sendResult(
                             ChecklistItem(
                                 checklistItemId = currentChecklist.value,
@@ -51,11 +53,20 @@ private fun ChecklistItem(
                                 message = null,
                             )
                         )
-                        currentChecklist.value += 1
                     },
                 )
             }
         }
-
+        if (showAlertDialog.value) {
+            CustomAlertDialog(
+                onDialogDismissClick = {
+                    showAlertDialog.value = false
+                },
+                onDialogOkClick = {
+                    showAlertDialog.value = false
+                    currentChecklist.value += 1
+                }
+            )
+        }
     }
 }

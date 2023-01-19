@@ -6,6 +6,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -15,6 +16,8 @@ fun CustomRadioGroup(
     modifier: Modifier = Modifier,
     onRadioClicked: (Color) -> Unit
 ) {
+    val alertDialogMessage = rememberSaveable { mutableStateOf("") }
+
     val radioOptions = listOf(Color.Green, Color.Yellow, Color.Red)
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
     Column {
@@ -36,8 +39,7 @@ fun CustomRadioGroup(
                             }
                         )
                         .padding(horizontal = 16.dp),
-
-                    ) {
+                ) {
 
                 }
             }

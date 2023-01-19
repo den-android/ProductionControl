@@ -37,7 +37,9 @@ class StageDataMiddleware(
 
     private suspend fun sendChecklistItems(data: ChecklistItem, store: Store<StageState, StageAction>) {
         stageRepository.addChecklistItem(data)
-        store.dispatch(StageAction.SentChecklistItem)
+        if (data.statusId == 2) {
+            store.dispatch(StageAction.SentChecklistItem)
+        }
     }
 
     private suspend fun sentChecklistItem(stageId: Int, store: Store<StageState, StageAction>) {

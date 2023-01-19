@@ -25,7 +25,7 @@ class StageViewModel @Inject constructor(
         }
     }
 
-    fun sendChecklistResults(checklistItem: ChecklistItem) {
+    fun sendChecklistResult(checklistItem: ChecklistItem) {
         viewModelScope.launch {
             stageStore.dispatch(
                 StageAction.SendingChecklistItem(checklistItem)

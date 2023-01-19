@@ -23,7 +23,7 @@ import net.denis.productioncontrol.features.stage_checklist.presentation.model.C
 fun ChecklistCardItem(
     modifier: Modifier = Modifier,
     checklist: Checklist,
-    statusClick:(Int) -> Unit,
+    statusClick: (Int) -> Unit,
 ) {
     val checklistNameScroll = rememberScrollState(0)
 
@@ -49,8 +49,8 @@ fun ChecklistCardItem(
 
             Box(modifier = modifier.weight(2f)) {
                 CustomRadioGroup(
-                    onRadioClicked = {
-                        when (it) {
+                    onRadioClicked = { color ->
+                        when (color) {
                             Color.Green -> {
                                 statusClick(0)
                             }
