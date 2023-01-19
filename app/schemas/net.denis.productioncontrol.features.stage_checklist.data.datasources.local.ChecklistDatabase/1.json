@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b095f5b03e609286c92e60146f2c44bb",
+    "identityHash": "ac56cd61f68996ea401e5b91484eda76",
     "entities": [
       {
-        "tableName": "completed_checklist_item_table",
+        "tableName": "checklist_item_table",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`checklist_item_id` INTEGER NOT NULL, `stage_id` INTEGER NOT NULL, `status_code` INTEGER NOT NULL, `status_message` TEXT, PRIMARY KEY(`checklist_item_id`))",
         "fields": [
           {
@@ -46,7 +46,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b095f5b03e609286c92e60146f2c44bb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ac56cd61f68996ea401e5b91484eda76')"
     ]
   }
 }

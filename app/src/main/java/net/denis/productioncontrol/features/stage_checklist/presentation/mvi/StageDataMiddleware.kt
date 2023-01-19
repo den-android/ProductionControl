@@ -1,10 +1,9 @@
 package net.denis.productioncontrol.features.stage_checklist.presentation.mvi
 
-import android.util.Log
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
 import net.denis.productioncontrol.core.presentation.redux.Middleware
 import net.denis.productioncontrol.core.presentation.redux.Store
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.ChecklistItem
 
 class StageDataMiddleware(
     private val stageRepository: IStageRepository,
@@ -20,27 +19,29 @@ class StageDataMiddleware(
                 stageLoading(store)
             }
 
-            is StageAction.SendChecklistItems -> {
-                val data: CompletedChecklistItem = action.completedChecklistItem
-                stageRepository.addChecklistItem(data)
-//                val sendStatus: Boolean = stageRepository.addChecklistItem(
-//                    completedChecklistItem = data
-//                )
-//                if (sendStatus == true) {
-//                    Log.d("Logging", "" +
-//                            "\n[StageDataMiddleware]" +
-//                            "\nSUCCESS - ${sendStatus}" +
-//                            "")
-//                } else {
-//                    Log.d("Logging", "" +
-//                            "\n[StageDataMiddleware]" +
-//                            "\nFAILURE - ${sendStatus}" +
-//                            "")
-//                }
+            is StageAction.SendingChecklistItem -> {
+                currentState.completedChecklist?.let {
+                    sendChecklistItems(data = it, store = store)
+                }
+            }
+
+            is StageAction.SentChecklistItem -> {
+                currentState.completedChecklist?.let {
+                    sentChecklistItem(stageId = it.stageId, store = store)
+                }
             }
 
             else -> currentState
         }
+    }
+
+    private suspend fun sendChecklistItems(data: ChecklistItem, store: Store<StageState, StageAction>) {
+        stageRepository.addChecklistItem(data)
+        store.dispatch(StageAction.SentChecklistItem)
+    }
+
+    private suspend fun sentChecklistItem(stageId: Int, store: Store<StageState, StageAction>) {
+        stageRepository.removeChecklistItemByStageId(stageId)
     }
 
     private suspend fun stageLoading(store: Store<StageState, StageAction>) {

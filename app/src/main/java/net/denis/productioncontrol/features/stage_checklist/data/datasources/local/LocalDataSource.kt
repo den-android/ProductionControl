@@ -1,18 +1,20 @@
 package net.denis.productioncontrol.features.stage_checklist.data.datasources.local
 
-import kotlinx.coroutines.flow.Flow
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.entities.CompletedChecklistItemEntity
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ICompletedChecklistDao
+import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.entities.ChecklistItemEntity
+import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IChecklistDao
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
-    private val completedChecklistDao: ICompletedChecklistDao,
+    private val checklistDao: IChecklistDao,
 ) : ILocalDataSource {
 
-    override suspend fun addChecklistItem(completedChecklistItemEntity: CompletedChecklistItemEntity) {
-        completedChecklistDao.addChecklistItem(completedChecklistItemEntity)
+    override suspend fun addChecklistItem(checklistItemEntity: ChecklistItemEntity) {
+        checklistDao.addChecklistItem(checklistItemEntity)
+    }
+
+    override suspend fun removeChecklistItemByStageId(stageId: Int) {
+        checklistDao.removeChecklistItemByStageId(stageId)
     }
 
 }

@@ -20,6 +20,12 @@ class StageReducer : Reducer<StageState, StageAction> {
                 )
             }
 
+            is StageAction.SendingChecklistItem -> {
+                currentState.copy(
+                    completedChecklist = action.checklistItem
+                )
+            }
+
             else -> currentState
         }
     }

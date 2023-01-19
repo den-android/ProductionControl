@@ -7,7 +7,9 @@ import net.denis.productioncontrol.features.stage_checklist.data.datasources.rem
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.dto.StageDto
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageApi
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.ChecklistItem
 import javax.inject.Inject
+import kotlin.random.Random
 
 class RemoteDataSource @Inject constructor(
    // private val stageApi: IStageApi,
@@ -21,6 +23,12 @@ class RemoteDataSource @Inject constructor(
         delay(1000L)
         val data = testRemoteDataSource
         return data
+    }
+
+    override suspend fun sendCompletedChecklist(checklistItem: ChecklistItem): Boolean {
+        delay(1500L)
+        val randomResult: Int = Random.nextInt(0, 3)
+        return randomResult!=0
     }
 
     private val testRemoteDataSource: List<StageDto> = listOf(
@@ -51,18 +59,6 @@ class RemoteDataSource @Inject constructor(
                 ChecklistDto(5, "5-rd checklist"),
                 ChecklistDto(6, "6-rd checklist"),
             )
-        ),
-    )
-
-    private val smallRemoteDataSource: List<StageDto> = listOf(
-        StageDto(
-            0, "0 stage", checklistDto = listOf(
-                ChecklistDto(0, "zero"),
-                ChecklistDto(1, "one"),
-            )
-        ),
-        StageDto(
-            1, "1 stage", checklistDto = listOf()
         ),
     )
 

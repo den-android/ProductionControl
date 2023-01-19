@@ -1,15 +1,13 @@
 package net.denis.productioncontrol.features.stage_checklist.data.repository
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.ChecklistItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import javax.inject.Inject
-import kotlin.random.Random
 
 class StageRepository @Inject constructor(
     private val remoteDataSource: IRemoteDataSource,
@@ -23,13 +21,22 @@ class StageRepository @Inject constructor(
         }
     }
 
+    override suspend fun sendCompletedChecklist(checklistItem: ChecklistItem) {
+        if (remoteDataSource.sendCompletedChecklist(checklistItem)) {
+            removeChecklistItemByStageId(checklistItem.stageId)
+        }
+    }
+
 //    override suspend fun getStage(): Flow<List<Stage>> {
 //        TODO("Get response from retrofit here")
 //    }
 
-    override suspend fun addChecklistItem(completedChecklistItem: CompletedChecklistItem) {
-        localDataSource.addChecklistItem(completedChecklistItem.toCompletedChecklistItemEntity())
+    override suspend fun addChecklistItem(checklistItem: ChecklistItem) {
+        localDataSource.addChecklistItem(checklistItem.toCompletedChecklistItemEntity())
     }
 
+    override suspend fun removeChecklistItemByStageId(stageId: Int) {
+        localDataSource.removeChecklistItemByStageId(stageId)
+    }
 
 }

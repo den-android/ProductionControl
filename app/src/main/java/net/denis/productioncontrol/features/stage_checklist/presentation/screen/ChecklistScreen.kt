@@ -1,16 +1,15 @@
 package net.denis.productioncontrol.features.stage_checklist.presentation.screen
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import net.denis.productioncontrol.features.stage_checklist.presentation.model.CompletedChecklistItem
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.ChecklistItem
 import net.denis.productioncontrol.features.stage_checklist.presentation.model.Stage
 import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageViewModel
 import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.ChecklistCardItem
-import net.denis.productioncontrol.features.stage_checklist.presentation.screen.components.CustomAlertDialog
 
 @Composable
 fun ChecklistScreen(
@@ -23,10 +22,9 @@ fun ChecklistScreen(
     ChecklistItem(
         stage = stage,
         stageId = stageId,
-        sendResult = {
-            vm.sendChecklistResults(rawChecklistItem = it)
-        },
+        sendResult = vm::sendChecklistResults
     )
+
 }
 
 @Composable
@@ -34,10 +32,10 @@ private fun ChecklistItem(
     modifier: Modifier = Modifier,
     stage: List<Stage>,
     stageId: Int,
-    sendResult: (CompletedChecklistItem) -> Unit,
+    sendResult: (ChecklistItem) -> Unit,
 ) {
     val showAlertDialog = rememberSaveable { mutableStateOf(false) }
-    val currentChecklist = rememberSaveable { mutableStateOf(0) }
+    val currentChecklist = remember { mutableStateOf(0) }
 
     stage.forEach { stage ->
         stage.checklist.forEach { checklist ->
@@ -45,31 +43,19 @@ private fun ChecklistItem(
                 ChecklistCardItem(
                     checklist = checklist,
                     statusClick = { statusId ->
-                        showAlertDialog.value = true
                         sendResult(
-                            CompletedChecklistItem(
-                                stageId,
-                                currentChecklist.value,
-                                statusId,
-                                "",
+                            ChecklistItem(
+                                checklistItemId = currentChecklist.value,
+                                statusId = statusId,
+                                stageId = stageId,
+                                message = null,
                             )
                         )
-
-                    }
+                        currentChecklist.value += 1
+                    },
                 )
             }
         }
 
-        if (showAlertDialog.value) {
-            CustomAlertDialog(
-                onDialogDismissClick = {
-                    showAlertDialog.value = false
-                },
-                onDialogOkClick = {
-                    showAlertDialog.value = false
-                    currentChecklist.value += 1
-                }
-            )
-        }
     }
 }
