@@ -24,7 +24,7 @@ class StageRepository @Inject constructor(
     override suspend fun sendCompletedChecklist(checklistItem: ChecklistItem) {
         val response = remoteDataSource.sendCompletedChecklist(checklistItem)
         if (response) {
-            removeChecklistItemByStageId(checklistItem.stageId)
+            removeAllChecklistItems(checklistItem.stageId)
         }
     }
 
@@ -36,8 +36,8 @@ class StageRepository @Inject constructor(
         localDataSource.addChecklistItem(checklistItem.toCompletedChecklistItemEntity())
     }
 
-    override suspend fun removeChecklistItemByStageId(stageId: Int) {
-        localDataSource.removeChecklistItemByStageId(stageId)
+    override suspend fun removeAllChecklistItems(stageId:Int) {
+        localDataSource.removeAllChecklistItems(stageId)
     }
 
 }

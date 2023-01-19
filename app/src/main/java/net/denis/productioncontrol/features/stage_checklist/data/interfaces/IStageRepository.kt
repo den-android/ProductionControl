@@ -10,7 +10,7 @@ interface IStageRepository {
     suspend fun getTestStage(): Flow<List<Stage>>
 
     suspend fun addChecklistItem(checklistItem: ChecklistItem)
-    suspend fun removeChecklistItemByStageId(stageId: Int)
+    suspend fun removeAllChecklistItems(stageId: Int)
 
     suspend fun sendCompletedChecklist(checklistItem: ChecklistItem)
 }

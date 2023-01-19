@@ -7,6 +7,6 @@ interface ILocalDataSource {
 
     suspend fun addChecklistItem(checklistItemEntity: ChecklistItemEntity)
 
-    suspend fun removeChecklistItemByStageId(stageId: Int)
+    suspend fun removeAllChecklistItems(stageId: Int)
 
 }

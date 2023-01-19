@@ -3,6 +3,7 @@ package net.denis.productioncontrol.features.stage_checklist.data.datasources.lo
 import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.entities.ChecklistItemEntity
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IChecklistDao
 import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
+import net.denis.productioncontrol.features.stage_checklist.presentation.model.ChecklistItem
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
@@ -13,8 +14,8 @@ class LocalDataSource @Inject constructor(
         checklistDao.addChecklistItem(checklistItemEntity)
     }
 
-    override suspend fun removeChecklistItemByStageId(stageId: Int) {
-        checklistDao.removeChecklistItemByStageId(stageId)
+    override suspend fun removeAllChecklistItems(stageId:Int) {
+        checklistDao.removeAllChecklistItems(stageId)
     }
 
 }
