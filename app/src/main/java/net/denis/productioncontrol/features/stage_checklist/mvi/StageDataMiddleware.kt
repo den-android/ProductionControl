@@ -35,6 +35,10 @@ class StageDataMiddleware(
         }
     }
 
+    private suspend fun saveChecklistItem(data: ChecklistItem, store: Store<StageState, StageAction>) {
+        stageRepository.addChecklistItem(data)
+    }
+
     private suspend fun sendCompletedChecklist(stageId: Int) {
         stageRepository.sendCompletedChecklist(stageId)
     }
@@ -45,8 +49,6 @@ class StageDataMiddleware(
         }
     }
 
-    private suspend fun saveChecklistItem(data: ChecklistItem, store: Store<StageState, StageAction>) {
-        stageRepository.addChecklistItem(data)
-    }
+
 
 }
