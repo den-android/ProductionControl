@@ -11,6 +11,7 @@ interface IStageRepository {
 
     suspend fun addChecklistItem(checklistItem: ChecklistItem)
     suspend fun removeAllChecklistItems(stageId: Int)
+    //suspend fun getAllChecklistByStageId(stageId: Int): Flow<List<ChecklistItem>>
 
-    suspend fun getAllChecklistByStageId(stageId: Int): Flow<List<ChecklistItem>>
+    suspend fun sendCompletedChecklist(stageId: Int): Boolean
 }

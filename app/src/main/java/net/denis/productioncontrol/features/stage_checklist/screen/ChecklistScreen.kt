@@ -24,10 +24,7 @@ fun ChecklistScreen(
     ChecklistItem(
         stage = stage,
         stageId = stageId,
-        sendResult = {
-            Log.d("Logging", "\n[CHECKLISTSCREEN]\n${it}\n")
-            vm.sendChecklistItem(it)
-        },
+        sendResult = vm::fillChecklistItem,
     )
 
 }

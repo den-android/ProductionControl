@@ -10,7 +10,7 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 class RemoteDataSource @Inject constructor(
-   // private val stageApi: IStageApi,
+    // private val stageApi: IStageApi,
 ) : IRemoteDataSource {
 
 //    override suspend fun getStage(): NetworkResult<List<StageDto>> {
@@ -24,10 +24,15 @@ class RemoteDataSource @Inject constructor(
     }
 
     override suspend fun sendChecklist(completedChecklist: List<ChecklistItem>): Boolean {
-        Log.d("Logging", "[RemoteDataSource]\n${completedChecklist}")
         delay(1500L)
         val randomResult: Int = Random.nextInt(0, 3)
-        return randomResult!=0
+        if (randomResult != 0) {
+            Log.d("Logging", "[RemoteDataSource]\n${completedChecklist}")
+            return true
+        } else {
+            Log.d("Logging", "[RemoteDataSource]\n ERROR ERROR ERROR")
+            return false
+        }
     }
 
     private val testRemoteDataSource: List<StageDto> = listOf(

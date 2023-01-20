@@ -25,7 +25,7 @@ class StageDataMiddleware(
                 action.checklistItem?.let { checklistItem ->
                     saveChecklistItem(data = checklistItem, store = store)
                     if ((checklistItem.statusId == 2) || (currentState.stageList[checklistItem.stageId].checklist.size == checklistItem.checklistItemId + 1)) {
-                        send(checklistItem.stageId)
+                        sendCompletedChecklist(checklistItem.stageId)
                     }
 
                 }
@@ -35,14 +35,8 @@ class StageDataMiddleware(
         }
     }
 
-    private suspend fun save() {
-
-    }
-
-    private suspend fun send(stageId: Int) {
-        stageRepository.getAllChecklistByStageId(stageId).collect() {
-            Log.d("Logging", "${it}")
-        }
+    private suspend fun sendCompletedChecklist(stageId: Int) {
+        stageRepository.sendCompletedChecklist(stageId)
     }
 
     private suspend fun stageLoading(store: Store<StageState, StageAction>) {
@@ -51,14 +45,8 @@ class StageDataMiddleware(
         }
     }
 
-    private suspend fun saveChecklistItem(
-        data: ChecklistItem,
-        store: Store<StageState, StageAction>
-    ) {
+    private suspend fun saveChecklistItem(data: ChecklistItem, store: Store<StageState, StageAction>) {
         stageRepository.addChecklistItem(data)
     }
 
-    private suspend fun sendChecklist(stageId: Int) {
-        stageRepository.removeAllChecklistItems(stageId = stageId)
-    }
 }
