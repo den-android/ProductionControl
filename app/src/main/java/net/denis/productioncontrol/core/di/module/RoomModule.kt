@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.ChecklistDatabase
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IChecklistDao
+import net.denis.productioncontrol.core.data.datasources.local.ChecklistDatabase
+import net.denis.productioncontrol.core.data.interfaces.IChecklistDao
 import javax.inject.Singleton
 
 @Module

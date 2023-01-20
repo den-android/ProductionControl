@@ -7,9 +7,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import net.denis.productioncontrol.core.util.Constants.PARAM_STAGE_ID
-import net.denis.productioncontrol.features.stage_checklist.presentation.mvi.StageViewModel
-import net.denis.productioncontrol.features.stage_checklist.presentation.screen.ChecklistScreen
-import net.denis.productioncontrol.features.stage_checklist.presentation.screen.StageScreen
+import net.denis.productioncontrol.features.stage_checklist.mvi.StageViewModel
+import net.denis.productioncontrol.features.stage_checklist.screen.ChecklistScreen
+import net.denis.productioncontrol.features.stage_checklist.screen.StageScreen
 
 @Composable
 fun NavGraph(

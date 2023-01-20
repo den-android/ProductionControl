@@ -4,12 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.local.LocalDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.datasources.remote.RemoteDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.ILocalDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IRemoteDataSource
-import net.denis.productioncontrol.features.stage_checklist.data.interfaces.IStageRepository
-import net.denis.productioncontrol.features.stage_checklist.data.repository.StageRepository
+import net.denis.productioncontrol.core.data.datasources.local.LocalDataSource
+import net.denis.productioncontrol.core.data.datasources.remote.RemoteDataSource
+import net.denis.productioncontrol.core.data.interfaces.ILocalDataSource
+import net.denis.productioncontrol.core.data.interfaces.IRemoteDataSource
+import net.denis.productioncontrol.core.data.interfaces.IStageRepository
+import net.denis.productioncontrol.core.data.repository.StageRepository
 import javax.inject.Singleton
 
 @Module
