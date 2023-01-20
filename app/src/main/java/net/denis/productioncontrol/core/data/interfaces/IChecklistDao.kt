@@ -14,5 +14,5 @@ interface IChecklistDao {
     suspend fun removeAllChecklistItems(stageId: Int)
 
     @Query("SELECT * FROM checklist_item_table WHERE stage_id = :stageId")
-    suspend fun getAllChecklistById(stageId: Int): List<ChecklistItemEntity>
+    suspend fun getAllChecklistByStageId(stageId: Int): List<ChecklistItemEntity>
 }

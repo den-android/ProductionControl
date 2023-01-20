@@ -21,12 +21,11 @@ class StageRepository @Inject constructor(
         }
     }
 
-    override suspend fun sendChecklist(completedChecklist: List<ChecklistItem>): Boolean {
-        val response = remoteDataSource.sendChecklist(completedChecklist)
-        val data = completedChecklist
-
-        return true
-
+    override suspend fun getAllChecklistByStageId(stageId: Int): Flow<List<ChecklistItem>> {
+        return flow {
+            val data = localDataSource.getAllChecklistByStageId(stageId)
+            emit(data.map { it.toChecklistItem() })
+        }
     }
 
     override suspend fun addChecklistItem(checklistItem: ChecklistItem) {
@@ -34,7 +33,6 @@ class StageRepository @Inject constructor(
     }
 
     override suspend fun removeAllChecklistItems(stageId: Int) {
-
         localDataSource.removeAllChecklistItems(stageId)
     }
 

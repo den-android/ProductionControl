@@ -1,6 +1,7 @@
 package net.denis.productioncontrol.features.stage_checklist.mvi
 
 import android.util.Log
+import kotlinx.coroutines.flow.collect
 import net.denis.productioncontrol.core.data.interfaces.IStageRepository
 import net.denis.productioncontrol.core.presentation.redux.Middleware
 import net.denis.productioncontrol.core.presentation.redux.Store
@@ -23,8 +24,8 @@ class StageDataMiddleware(
             is StageAction.FillChecklistItem -> {
                 action.checklistItem?.let { checklistItem ->
                     saveChecklistItem(data = checklistItem, store = store)
-                    if ((checklistItem.statusId == 2) || (currentState.stageList[checklistItem.stageId].checklist.size == checklistItem.checklistItemId+1)) {
-                        sendChecklist(stageId = checklistItem.stageId)
+                    if ((checklistItem.statusId == 2) || (currentState.stageList[checklistItem.stageId].checklist.size == checklistItem.checklistItemId + 1)) {
+                        send(checklistItem.stageId)
                     }
 
                 }
@@ -34,13 +35,26 @@ class StageDataMiddleware(
         }
     }
 
+    private suspend fun save() {
+
+    }
+
+    private suspend fun send(stageId: Int) {
+        stageRepository.getAllChecklistByStageId(stageId).collect() {
+            Log.d("Logging", "${it}")
+        }
+    }
+
     private suspend fun stageLoading(store: Store<StageState, StageAction>) {
         stageRepository.getTestStage().collect { data ->
             store.dispatch(StageAction.StageLoaded(data))
         }
     }
 
-    private suspend fun saveChecklistItem(data: ChecklistItem, store: Store<StageState, StageAction>) {
+    private suspend fun saveChecklistItem(
+        data: ChecklistItem,
+        store: Store<StageState, StageAction>
+    ) {
         stageRepository.addChecklistItem(data)
     }
 
