@@ -11,5 +11,4 @@ sealed class StageAction : Action {
 
 
     data class FillChecklistItem(val checklistItem: ChecklistItem) : StageAction()
-    object SendChecklist: StageAction()
 }

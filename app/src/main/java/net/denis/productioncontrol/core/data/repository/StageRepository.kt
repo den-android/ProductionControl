@@ -34,6 +34,7 @@ class StageRepository @Inject constructor(
     }
 
     override suspend fun removeAllChecklistItems(stageId: Int) {
+
         localDataSource.removeAllChecklistItems(stageId)
     }
 

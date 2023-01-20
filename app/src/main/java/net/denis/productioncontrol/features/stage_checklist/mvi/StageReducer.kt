@@ -27,7 +27,6 @@ class StageReducer : Reducer<StageState, StageAction> {
                 )
             }
 
-
             else -> currentState
         }
     }

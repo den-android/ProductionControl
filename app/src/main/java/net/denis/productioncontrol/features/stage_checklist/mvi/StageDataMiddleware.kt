@@ -23,15 +23,11 @@ class StageDataMiddleware(
             is StageAction.FillChecklistItem -> {
                 action.checklistItem?.let { checklistItem ->
                     saveChecklistItem(data = checklistItem, store = store)
-                    if (checklistItem.statusId == 2) {
-                        sendChecklist(checklistItem.stageId)
+                    if ((checklistItem.statusId == 2) || (currentState.stageList[checklistItem.stageId].checklist.size == checklistItem.checklistItemId+1)) {
+                        sendChecklist(stageId = checklistItem.stageId)
                     }
+
                 }
-
-            }
-
-            is StageAction.SendChecklist -> {
-                Log.d("Logging", "${currentState.checklistItem}")
             }
 
             else -> currentState
