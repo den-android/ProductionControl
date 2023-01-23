@@ -10,4 +10,12 @@ sealed class StageAction : Action {
     data class StageLoaded(val stage: List<Stage>) : StageAction()
 
     data class FillChecklistItem(val checklistItem: ChecklistItem) : StageAction()
+
+
+    object PopBackStack : StageAction()
+    data class Navigate(val route: String) : StageAction()
+    data class ShowAlertDialog(
+        val message: String,
+        val action: String? = null,
+    ): StageAction()
 }

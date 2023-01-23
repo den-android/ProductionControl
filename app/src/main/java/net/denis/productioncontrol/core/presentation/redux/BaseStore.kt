@@ -1,7 +1,9 @@
 package net.denis.productioncontrol.core.presentation.redux
 
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 
 open class BaseStore<S : State, A : Action>(
     initialState: S,
@@ -11,6 +13,9 @@ open class BaseStore<S : State, A : Action>(
 
     private val _state = MutableStateFlow(initialState)
     override val state: StateFlow<S> = _state
+
+    private val _uiEvent = Channel<Action>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     private val currentState: S
         get() = _state.value

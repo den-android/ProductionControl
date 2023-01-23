@@ -10,7 +10,7 @@ class StageStore @Inject constructor(
     initialState = StageState(),
     reducer = StageReducer(),
     middlewares = listOf(
-        //LoggingMiddleware(),
+        LoggingMiddleware(),
         StageDataMiddleware(stageRepository),
     )
 )

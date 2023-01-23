@@ -17,7 +17,7 @@ suspend fun <T : Any> handleApi(
         val body = response.body()
         if (response.isSuccessful && body != null) {
             NetworkResult.Success(body)
-        } else {
+        } else { 
             NetworkResult.Error(code = response.code(), message = response.message())
         }
     } catch (e: HttpException) {

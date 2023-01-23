@@ -31,6 +31,10 @@ class StageDataMiddleware(
                 }
             }
 
+            is StageAction.ShowAlertDialog -> {
+
+            }
+
             else -> currentState
         }
     }
@@ -48,7 +52,5 @@ class StageDataMiddleware(
             store.dispatch(StageAction.StageLoaded(data))
         }
     }
-
-
 
 }
